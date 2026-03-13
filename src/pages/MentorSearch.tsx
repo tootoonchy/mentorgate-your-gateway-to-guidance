@@ -26,7 +26,7 @@ const mentors = [
     experience: '6+ years',
     image: 'https://randomuser.me/api/portraits/women/1.jpg',
     available: true,
-    coverImage: 'https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&q=80&w=1000',
+    coverImage: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1000',
   },
   {
     id: 2,
@@ -38,7 +38,7 @@ const mentors = [
     experience: '6+ years',
     image: 'https://randomuser.me/api/portraits/men/2.jpg',
     available: false,
-    coverImage: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=1000',
+    coverImage: 'https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&q=80&w=1000',
   },
   {
     id: 3,
@@ -50,7 +50,7 @@ const mentors = [
     experience: '6+ years',
     image: 'https://randomuser.me/api/portraits/women/3.jpg',
     available: true,
-    coverImage: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&q=80&w=1000',
+    coverImage: 'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&q=80&w=1000',
   },
   {
     id: 4,
@@ -62,7 +62,7 @@ const mentors = [
     experience: '6+ years',
     image: 'https://randomuser.me/api/portraits/men/4.jpg',
     available: true,
-    coverImage: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=1000',
+    coverImage: 'https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?auto=format&fit=crop&q=80&w=1000',
   },
   {
     id: 5,
@@ -74,7 +74,7 @@ const mentors = [
     experience: '6+ years',
     image: 'https://randomuser.me/api/portraits/women/5.jpg',
     available: false,
-    coverImage: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=1000',
+    coverImage: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=1000',
   },
   {
     id: 6,
@@ -86,7 +86,7 @@ const mentors = [
     experience: '6+ years',
     image: 'https://randomuser.me/api/portraits/men/6.jpg',
     available: false,
-    coverImage: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=1000',
+    coverImage: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=1000',
   },
   {
     id: 7,
@@ -98,7 +98,7 @@ const mentors = [
     experience: '6+ years',
     image: 'https://randomuser.me/api/portraits/women/7.jpg',
     available: false,
-    coverImage: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&q=80&w=1000',
+    coverImage: 'https://images.unsplash.com/photo-1557672172-298e090bd0f1?auto=format&fit=crop&q=80&w=1000',
   },
   {
     id: 8,
@@ -110,7 +110,7 @@ const mentors = [
     experience: '6+ years',
     image: 'https://randomuser.me/api/portraits/men/8.jpg',
     available: false,
-    coverImage: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=1000',
+    coverImage: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=1000',
   },
   {
     id: 9,
@@ -122,7 +122,7 @@ const mentors = [
     experience: '6+ years',
     image: 'https://randomuser.me/api/portraits/women/9.jpg',
     available: false,
-    coverImage: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1000',
+    coverImage: 'https://images.unsplash.com/photo-1617791160505-6f00504e3519?auto=format&fit=crop&q=80&w=1000',
   },
   {
     id: 10,
@@ -134,7 +134,7 @@ const mentors = [
     experience: '6+ years',
     image: 'https://randomuser.me/api/portraits/men/10.jpg',
     available: true,
-    coverImage: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=1000',
+    coverImage: 'https://images.unsplash.com/photo-1554034483-04fda0d3507b?auto=format&fit=crop&q=80&w=1000',
   },
   {
     id: 11,
@@ -146,7 +146,7 @@ const mentors = [
     experience: '6+ years',
     image: 'https://randomuser.me/api/portraits/men/11.jpg',
     available: false,
-    coverImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=1000',
+    coverImage: 'https://images.unsplash.com/photo-1567095761054-7a02e69e5c43?auto=format&fit=crop&q=80&w=1000',
   },
   {
     id: 12,
@@ -158,7 +158,7 @@ const mentors = [
     experience: '6+ years',
     image: 'https://randomuser.me/api/portraits/men/12.jpg',
     available: false,
-    coverImage: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=1000',
+    coverImage: 'https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&q=80&w=1000',
   },
   {
     id: 13,
@@ -170,7 +170,7 @@ const mentors = [
     experience: '6+ years',
     image: 'https://randomuser.me/api/portraits/women/13.jpg',
     available: false,
-    coverImage: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=1000',
+    coverImage: 'https://images.unsplash.com/photo-1567360425618-1594206637d2?auto=format&fit=crop&q=80&w=1000',
   },
   {
     id: 14,
@@ -182,7 +182,7 @@ const mentors = [
     experience: '6+ years',
     image: 'https://randomuser.me/api/portraits/women/14.jpg',
     available: false,
-    coverImage: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&q=80&w=1000',
+    coverImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80&w=1000',
   },
   {
     id: 15,
@@ -194,7 +194,7 @@ const mentors = [
     experience: '6+ years',
     image: 'https://randomuser.me/api/portraits/women/15.jpg',
     available: true,
-    coverImage: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=80&w=1000',
+    coverImage: 'https://images.unsplash.com/photo-1464618663641-bbdd760ae84a?auto=format&fit=crop&q=80&w=1000',
   },
   {
     id: 16,
@@ -206,7 +206,7 @@ const mentors = [
     experience: '6+ years',
     image: 'https://randomuser.me/api/portraits/women/16.jpg',
     available: false,
-    coverImage: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=1000',
+    coverImage: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&q=80&w=1000',
   },
   {
     id: 17,
@@ -218,7 +218,7 @@ const mentors = [
     experience: '6+ years',
     image: 'https://randomuser.me/api/portraits/men/17.jpg',
     available: true,
-    coverImage: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=1000',
+    coverImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80&w=1000',
   },
   {
     id: 18,
@@ -230,7 +230,7 @@ const mentors = [
     experience: '6+ years',
     image: 'https://randomuser.me/api/portraits/women/18.jpg',
     available: true,
-    coverImage: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&q=80&w=1000',
+    coverImage: 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&q=80&w=1000',
   },
 ];
 
