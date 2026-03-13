@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import { 
   LayoutDashboard, 
   Users, 
@@ -10,11 +11,11 @@ import {
 } from 'lucide-react';
 
 const menuItems = [
-  { icon: LayoutDashboard, label: 'Dashboard', active: true },
-  { icon: Users, label: 'Mentors', active: false },
-  { icon: Briefcase, label: 'Projects', active: false },
-  { icon: MessageSquare, label: 'Messages', active: false },
-  { icon: Bell, label: 'Notifications', active: false },
+  { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
+  { icon: Users, label: 'Mentors', path: '/mentors' },
+  { icon: Briefcase, label: 'Projects', path: '/projects' },
+  { icon: MessageSquare, label: 'Messages', path: '/messages' },
+  { icon: Bell, label: 'Notifications', path: '/notifications' },
 ];
 
 export const Sidebar = () => {
@@ -32,20 +33,23 @@ export const Sidebar = () => {
 
         <nav className="space-y-4">
           {menuItems.map((item) => (
-            <button
+            <NavLink
               key={item.label}
-              className={`w-full flex items-center justify-between p-3 rounded-xl transition-all duration-200 group ${
-                item.active 
-                  ? 'bg-purple-500/10 text-purple-400' 
-                  : 'text-gray-500 hover:bg-gray-900 hover:text-gray-300'
-              }`}
+              to={item.path}
+              className={({ isActive }) => 
+                `w-full flex items-center justify-between p-3 rounded-xl transition-all duration-200 group ${
+                  isActive 
+                    ? 'bg-purple-500/10 text-purple-400' 
+                    : 'text-gray-500 hover:bg-gray-900 hover:text-gray-300'
+                }`
+              }
             >
               <div className="flex items-center gap-3">
                 <item.icon className="w-5 h-5" />
                 <span className="font-medium">{item.label}</span>
               </div>
-              <ChevronRight className={`w-4 h-4 transition-transform ${item.active ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} />
-            </button>
+              <ChevronRight className="w-4 h-4 transition-transform group-hover:opacity-100 opacity-0 group-[.active]:opacity-100" />
+            </NavLink>
           ))}
         </nav>
       </div>
