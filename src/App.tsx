@@ -1,23 +1,23 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { DashboardLayout } from './layouts/DashboardLayout';
+import { AppLayout } from './layouts/AppLayout';
 import { Dashboard } from './pages/Dashboard';
-import { Mentors } from './pages/Mentors';
-import { Projects } from './pages/Projects';
+import { MentorSearch } from './pages/MentorSearch';
+import { Activities } from './pages/Activities';
 import './App.css';
 
 function App() {
   return (
     <Router>
-      <DashboardLayout>
+      <AppLayout>
         <Routes>
-          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+          <Route path="/" element={<Navigate to="/mentors" replace />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/mentors" element={<Mentors />} />
-          <Route path="/projects" element={<Projects />} />
-          {/* Fallback for other routes */}
-          <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          <Route path="/mentors" element={<MentorSearch />} />
+          <Route path="/activities" element={<Activities />} />
+          {/* Default fallback */}
+          <Route path="*" element={<Navigate to="/mentors" replace />} />
         </Routes>
-      </DashboardLayout>
+      </AppLayout>
     </Router>
   );
 }
