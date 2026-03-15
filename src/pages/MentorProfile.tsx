@@ -736,14 +736,26 @@ const ProfileHeader = ({ mentor }: { mentor: NonNullable<MentorInfo> }) => {
 const tabs = ["Overview", "Feed", "Podcasts", "Courses", "Files", "Calendar"];
 
 const MentorProfile = () => {
+  const { id } = useParams();
   const [activeTab, setActiveTab] = useState("Overview");
+  const mentor = getMentorFromSlug(id);
+
+  if (!mentor) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navbar />
+        <div className="flex items-center justify-center py-20 text-muted-foreground">
+          Mentor not found. <Link to="/" className="ml-2 underline text-foreground">Go back</Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <ProfileHeader />
+      <ProfileHeader mentor={mentor} />
 
-      {/* Tabs */}
       <div className="max-w-5xl mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between border-b border-border mb-6">
           <div className="flex gap-6">
@@ -766,10 +778,9 @@ const MentorProfile = () => {
           </span>
         </div>
 
-        {/* Tab content */}
         <div className="pb-12">
-          {activeTab === "Overview" && <OverviewTab />}
-          {activeTab === "Feed" && <FeedTab />}
+          {activeTab === "Overview" && <OverviewTab mentor={mentor} />}
+          {activeTab === "Feed" && <FeedTab mentor={mentor} />}
           {activeTab === "Courses" && <CoursesTab />}
           {(activeTab === "Podcasts" || activeTab === "Files" || activeTab === "Calendar") && (
             <div className="text-center py-12 text-muted-foreground text-sm">
