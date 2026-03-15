@@ -523,7 +523,7 @@ const FeedTab = ({ mentor }: { mentor: NonNullable<MentorInfo> }) => {
         {feedPosts.map((post, i) => (
           <div key={i} className="border border-border rounded-xl p-5 bg-card">
             <div className="flex items-start gap-3">
-              <img src={mentorData.avatar} alt="" className="h-8 w-8 rounded-full object-cover" />
+              <img src={mentor.avatar} alt="" className="h-8 w-8 rounded-full object-cover" />
               <div className="flex-1">
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className="text-sm font-semibold text-foreground">{post.author} {post.flag}</span>
