@@ -80,8 +80,8 @@ const MentorCard = ({
         </div>
 
         {/* Avatar */}
-        <div className="absolute flex items-center" style={{ left: "16.82px", top: "0px", paddingTop: "0px" }}>
-          <div className="relative" style={{ width: "85.53px", height: "85.53px" }}>
+        <div className="absolute flex items-center" style={{ left: "16.82px", top: "40px" }}>
+          <div className="relative" style={{ width: "87.71px", height: "85.53px" }}>
             <img
               src={avatarImage}
               alt={name}

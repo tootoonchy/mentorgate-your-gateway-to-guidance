@@ -4,22 +4,31 @@ import Navbar from "@/components/Navbar";
 import CategoryFilter from "@/components/CategoryFilter";
 import MentorCard from "@/components/MentorCard";
 
-const mentorNames = [
-  "Heidi Green", "Calvin Horton", "Camila Ruiz", "Wayne Elliott",
-  "Samantha Gonzales", "Carl Washington", "Isobel Horton", "Manuel Dean",
-  "Sandra Daniels", "Floyd Allen", "Calvin Horton", "Calvin Horton",
-  "Kristin Watson", "Samantha Gonzales", "Camila Ruiz", "Isobel Horton",
-  "Wayne Elliott", "Camila Ruiz", "Samantha Gonzales", "Manuel Dean",
-  "Sandra Daniels", "Floyd Allen", "Wayne Elliott", "Kristin Watson",
-];
-
-const coverImages = [
-  "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=200&fit=crop",
-  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=200&fit=crop",
-  "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=200&fit=crop",
-  "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=400&h=200&fit=crop",
-  "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=400&h=200&fit=crop",
-  "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=200&fit=crop",
+const mentorData = [
+  { name: "Heidi Green", role: "UX/UI Designer", company: "Apple", location: "Charleston, US", languages: "English, Arabic", experience: "6+ years", flag: "🇺🇸" },
+  { name: "Calvin Horton", role: "Product Manager", company: "Google", location: "London, UK", languages: "English, French", experience: "8+ years", flag: "🇬🇧" },
+  { name: "Camila Ruiz", role: "Data Scientist", company: "Meta", location: "Madrid, Spain", languages: "Spanish, English", experience: "5+ years", flag: "🇪🇸" },
+  { name: "Wayne Elliott", role: "Software Engineer", company: "Microsoft", location: "Berlin, Germany", languages: "English, German", experience: "10+ years", flag: "🇩🇪" },
+  { name: "Samantha Gonzales", role: "Marketing Lead", company: "Spotify", location: "Stockholm, Sweden", languages: "English, Swedish", experience: "7+ years", flag: "🇸🇪" },
+  { name: "Carl Washington", role: "UX Researcher", company: "Amazon", location: "Seattle, US", languages: "English", experience: "4+ years", flag: "🇺🇸" },
+  { name: "Isobel Horton", role: "Design Director", company: "Figma", location: "Toronto, Canada", languages: "English, French", experience: "12+ years", flag: "🇨🇦" },
+  { name: "Manuel Dean", role: "Frontend Engineer", company: "Stripe", location: "São Paulo, Brazil", languages: "Portuguese, English", experience: "6+ years", flag: "🇧🇷" },
+  { name: "Sandra Daniels", role: "Content Strategist", company: "Notion", location: "Paris, France", languages: "French, English", experience: "5+ years", flag: "🇫🇷" },
+  { name: "Floyd Allen", role: "DevOps Engineer", company: "Netflix", location: "Tokyo, Japan", languages: "English, Japanese", experience: "9+ years", flag: "🇯🇵" },
+  { name: "Kristin Watson", role: "Lead UX/UI Designer", company: "Airbnb", location: "Melbourne, Australia", languages: "English", experience: "11+ years", flag: "🇦🇺" },
+  { name: "Ahmed Hassan", role: "AI Engineer", company: "OpenAI", location: "Dubai, UAE", languages: "Arabic, English", experience: "5+ years", flag: "🇦🇪" },
+  { name: "Yuki Tanaka", role: "Product Designer", company: "LINE", location: "Osaka, Japan", languages: "Japanese, English", experience: "7+ years", flag: "🇯🇵" },
+  { name: "Priya Sharma", role: "Growth Manager", company: "Razorpay", location: "Mumbai, India", languages: "Hindi, English", experience: "6+ years", flag: "🇮🇳" },
+  { name: "Luca Rossi", role: "Backend Engineer", company: "Shopify", location: "Milan, Italy", languages: "Italian, English", experience: "8+ years", flag: "🇮🇹" },
+  { name: "Elena Petrov", role: "UX Writer", company: "Canva", location: "Sydney, Australia", languages: "English, Russian", experience: "4+ years", flag: "🇦🇺" },
+  { name: "James O'Brien", role: "CTO", company: "Intercom", location: "Dublin, Ireland", languages: "English, Irish", experience: "15+ years", flag: "🇮🇪" },
+  { name: "Sofia Martinez", role: "Brand Designer", company: "Uber", location: "Mexico City, Mexico", languages: "Spanish, English", experience: "6+ years", flag: "🇲🇽" },
+  { name: "Chen Wei", role: "ML Engineer", company: "ByteDance", location: "Shanghai, China", languages: "Mandarin, English", experience: "7+ years", flag: "🇨🇳" },
+  { name: "Fatima Al-Rashid", role: "PM Lead", company: "Careem", location: "Riyadh, Saudi Arabia", languages: "Arabic, English", experience: "9+ years", flag: "🇸🇦" },
+  { name: "Oliver Schmidt", role: "Full Stack Dev", company: "SAP", location: "Munich, Germany", languages: "German, English", experience: "8+ years", flag: "🇩🇪" },
+  { name: "Anya Kowalski", role: "UX/UI Designer", company: "Revolut", location: "Warsaw, Poland", languages: "Polish, English", experience: "5+ years", flag: "🇵🇱" },
+  { name: "Tariq Osman", role: "Data Engineer", company: "Grab", location: "Singapore", languages: "English, Malay", experience: "6+ years", flag: "🇸🇬" },
+  { name: "Maria Santos", role: "Scrum Master", company: "Atlassian", location: "Lisbon, Portugal", languages: "Portuguese, English", experience: "7+ years", flag: "🇵🇹" },
 ];
 
 const avatarImages = [
@@ -31,16 +40,10 @@ const avatarImages = [
   "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face",
 ];
 
-const mentors = mentorNames.map((name, i) => ({
-  name,
-  role: i === 12 || i === 23 ? "Lead UX/UI Designer" : "UX/UI Designer",
-  company: "Apple",
-  location: "Charleston, United states",
-  languages: "English, Arabic",
-  experience: "6+ years of experience",
-  coverImage: coverImages[i % coverImages.length],
+const mentors = mentorData.map((m, i) => ({
+  ...m,
+  coverImage: "",
   avatarImage: avatarImages[i % avatarImages.length],
-  flag: "🇺🇸",
   available: true,
 }));
 
