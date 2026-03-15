@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import {
   Menu, User, MapPin, Globe, Calendar, Star, Users, CheckCircle,
@@ -33,7 +33,6 @@ const services = [
   {
     title: "1:1 Video Consultation",
     icon: Video,
-    color: "bg-amber-100 text-amber-700",
     description: "Book a 1:1 live video consultation & get personalized advice",
     nextAvailable: "Friday, 31 January\n9:00am (GMT +8)",
     price: "Starting at $80",
@@ -43,7 +42,6 @@ const services = [
   {
     title: "1:1 Mentorship",
     icon: UserCheck,
-    color: "bg-amber-100 text-amber-700",
     included: [
       "1:1 Chat (Unlimited)",
       "1:1 Video Calls (30 min / month)",
@@ -60,7 +58,6 @@ const services = [
   {
     title: "Community Membership",
     icon: Users2,
-    color: "bg-amber-100 text-amber-700",
     included: [
       "Details on how to build & manage a successful restaurant",
       "Advice on how to scale operations, launch a new location, & enter a new market",
@@ -74,7 +71,6 @@ const services = [
   {
     title: "Corporate Mentorship",
     icon: Building2,
-    color: "bg-amber-100 text-amber-700",
     included: [
       "B2B and corporate clients booking for workshop or limited time experiences.",
       "Common mistakes when building a restaurant business",
@@ -190,36 +186,121 @@ const courses = [
   },
 ];
 
-// --- Activity Heatmap ---
+// --- Activity Heatmap (GitHub-style, ending today) ---
 const ActivityHeatmap = () => {
-  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  const levels = ["bg-muted", "bg-green-100", "bg-green-200", "bg-green-400", "bg-green-600"];
+  const levels = [
+    "bg-muted",
+    "hsl(var(--muted-foreground) / 0.15)",
+    "hsl(var(--muted-foreground) / 0.3)",
+    "hsl(var(--muted-foreground) / 0.5)",
+    "hsl(var(--foreground) / 0.8)",
+  ];
+  const levelClasses = ["bg-muted", "bg-secondary", "bg-muted-foreground/20", "bg-muted-foreground/40", "bg-foreground/70"];
+
+  // Generate 365 days of data ending today
+  const today = new Date();
+  const cells = useMemo(() => {
+    const result: { date: Date; level: number }[] = [];
+    for (let i = 364; i >= 0; i--) {
+      const d = new Date(today);
+      d.setDate(d.getDate() - i);
+      // Random activity level, with more activity for recent days
+      const recencyBoost = i < 30 ? 0.3 : i < 90 ? 0.15 : 0;
+      const rand = Math.random() + recencyBoost;
+      let level = 0;
+      if (rand > 0.85) level = 4;
+      else if (rand > 0.7) level = 3;
+      else if (rand > 0.5) level = 2;
+      else if (rand > 0.35) level = 1;
+      result.push({ date: d, level });
+    }
+    return result;
+  }, []);
+
+  // Group into weeks (columns), 7 days each
+  const weeks: { date: Date; level: number }[][] = [];
+  // First, find what day of week the first cell is
+  const firstDay = cells[0].date.getDay(); // 0=Sun
+  // Pad the beginning so columns align
+  const paddedCells = [...Array(firstDay === 0 ? 6 : firstDay - 1).fill(null), ...cells];
+  for (let i = 0; i < paddedCells.length; i += 7) {
+    weeks.push(paddedCells.slice(i, i + 7));
+  }
+
+  // Month labels
+  const monthLabels: { label: string; col: number }[] = [];
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  let lastMonth = -1;
+  weeks.forEach((week, wi) => {
+    const validCell = week.find((c) => c !== null);
+    if (validCell) {
+      const m = validCell.date.getMonth();
+      if (m !== lastMonth) {
+        monthLabels.push({ label: monthNames[m], col: wi });
+        lastMonth = m;
+      }
+    }
+  });
+
+  const dayLabels = ["Mon", "", "Wed", "", "Fri", "", ""];
+  const totalWeeks = weeks.length;
+  const cellSize = 11;
+  const cellGap = 2;
+  const gridWidth = totalWeeks * (cellSize + cellGap);
 
   return (
     <div>
-      <div className="flex gap-1 mb-1 ml-8">
-        {months.map((m) => (
-          <span key={m} className="text-[10px] text-muted-foreground w-[calc(100%/12)] text-center">{m}</span>
-        ))}
+      {/* Month labels */}
+      <div className="flex mb-1 ml-8" style={{ width: gridWidth }}>
+        {monthLabels.map((ml, i) => {
+          const nextCol = i < monthLabels.length - 1 ? monthLabels[i + 1].col : totalWeeks;
+          const span = nextCol - ml.col;
+          return (
+            <span
+              key={i}
+              className="text-[10px] text-muted-foreground"
+              style={{ width: span * (cellSize + cellGap), flexShrink: 0 }}
+            >
+              {ml.label}
+            </span>
+          );
+        })}
       </div>
-      {days.map((day) => (
-        <div key={day} className="flex items-center gap-1 mb-[2px]">
-          <span className="text-[10px] text-muted-foreground w-7 text-right pr-1">{day}</span>
-          <div className="flex gap-[2px] flex-1">
-            {Array.from({ length: 52 }).map((_, i) => (
-              <div
-                key={i}
-                className={`w-[calc(100%/52)] aspect-square rounded-[2px] ${levels[Math.floor(Math.random() * 5)]}`}
-              />
-            ))}
-          </div>
+      {/* Grid */}
+      <div className="flex gap-0">
+        {/* Day labels */}
+        <div className="flex flex-col mr-1" style={{ gap: cellGap }}>
+          {dayLabels.map((d, i) => (
+            <span key={i} className="text-[10px] text-muted-foreground leading-none" style={{ height: cellSize, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', width: 24 }}>
+              {d}
+            </span>
+          ))}
         </div>
-      ))}
+        {/* Weeks */}
+        <div className="flex" style={{ gap: cellGap }}>
+          {weeks.map((week, wi) => (
+            <div key={wi} className="flex flex-col" style={{ gap: cellGap }}>
+              {week.map((cell, di) => (
+                <div
+                  key={di}
+                  className={`rounded-[2px] ${cell ? levelClasses[cell.level] : 'bg-transparent'}`}
+                  style={{ width: cellSize, height: cellSize }}
+                  title={cell ? `${cell.date.toLocaleDateString()}: Level ${cell.level}` : ''}
+                />
+              ))}
+              {/* Pad remaining cells if week is incomplete */}
+              {week.length < 7 && Array.from({ length: 7 - week.length }).map((_, pi) => (
+                <div key={`pad-${pi}`} style={{ width: cellSize, height: cellSize }} />
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* Legend */}
       <div className="flex items-center justify-end gap-1 mt-2 text-[10px] text-muted-foreground">
         <span>Less</span>
-        {levels.map((l, i) => (
-          <div key={i} className={`w-3 h-3 rounded-[2px] ${l}`} />
+        {levelClasses.map((l, i) => (
+          <div key={i} className={`rounded-[2px] ${l}`} style={{ width: 11, height: 11 }} />
         ))}
         <span>More</span>
       </div>
@@ -227,62 +308,82 @@ const ActivityHeatmap = () => {
   );
 };
 
-// --- Services Sidebar ---
-const ServicesSidebar = () => (
-  <div className="space-y-4">
-    {services.map((service, i) => (
-      <div key={i} className="border border-border rounded-xl p-4 bg-card">
-        <div className="flex items-center justify-between mb-2">
-          <h4 className="text-sm font-semibold text-foreground">{service.title}</h4>
-          <div className={`p-1.5 rounded-lg ${service.color}`}>
-            <service.icon className="h-4 w-4" />
+// --- Collapsible Service Card ---
+const ServiceCard = ({ service, defaultOpen = false }: { service: typeof services[0]; defaultOpen?: boolean }) => {
+  const [open, setOpen] = useState(defaultOpen);
+  const Icon = service.icon;
+
+  return (
+    <div className="border border-border rounded-xl bg-card overflow-hidden">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between p-4 hover:bg-muted/50 transition-colors"
+      >
+        <div className="flex items-center gap-3">
+          <div className="p-1.5 rounded-lg bg-secondary text-secondary-foreground">
+            <Icon className="h-4 w-4" />
           </div>
+          <h4 className="text-sm font-semibold text-foreground">{service.title}</h4>
         </div>
+        <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
+      </button>
 
-        {service.description && (
-          <p className="text-xs text-muted-foreground mb-3">{service.description}</p>
-        )}
+      {open && (
+        <div className="px-4 pb-4 border-t border-border pt-3">
+          {service.description && (
+            <p className="text-xs text-muted-foreground mb-3">{service.description}</p>
+          )}
 
-        {service.nextAvailable && (
-          <div className="mb-3">
-            <p className="text-xs font-medium text-foreground mb-1">Next available</p>
-            <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              <Calendar className="h-3.5 w-3.5" />
-              <span className="whitespace-pre-line">{service.nextAvailable}</span>
+          {service.nextAvailable && (
+            <div className="mb-3">
+              <p className="text-xs font-medium text-foreground mb-1">Next available</p>
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <Calendar className="h-3.5 w-3.5" />
+                <span className="whitespace-pre-line">{service.nextAvailable}</span>
+              </div>
+            </div>
+          )}
+
+          {service.included && (
+            <div className="mb-3">
+              <p className="text-xs font-medium text-foreground mb-1">What's included:</p>
+              <ul className="space-y-1">
+                {service.included.map((item, j) => (
+                  <li key={j} className="text-xs text-muted-foreground flex gap-1">
+                    <span>✦</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-sm font-semibold text-foreground">{service.price}</span>
+            <div className="flex items-center gap-1 text-xs text-muted-foreground">
+              <Star className="h-3 w-3" />
+              <span>{service.rating}</span>
             </div>
           </div>
-        )}
 
-        {service.included && (
-          <div className="mb-3">
-            <p className="text-xs font-medium text-foreground mb-1">What's included:</p>
-            <ul className="space-y-1">
-              {service.included.map((item, j) => (
-                <li key={j} className="text-xs text-muted-foreground flex gap-1">
-                  <span>✦</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+          {service.remaining && (
+            <p className="text-xs text-muted-foreground mb-2">{service.remaining}</p>
+          )}
 
-        <div className="flex items-center justify-between mb-3">
-          <span className="text-sm font-semibold text-foreground">{service.price}</span>
-          <div className="flex items-center gap-1 text-xs text-muted-foreground">
-            <Star className="h-3 w-3" />
-            <span>{service.rating}</span>
-          </div>
+          <button className="w-full py-2.5 text-sm font-medium rounded-lg bg-foreground text-background hover:opacity-90 transition-opacity">
+            {service.cta}
+          </button>
         </div>
+      )}
+    </div>
+  );
+};
 
-        {service.remaining && (
-          <p className="text-xs text-muted-foreground mb-2">{service.remaining}</p>
-        )}
-
-        <button className="w-full py-2.5 text-sm font-medium rounded-lg bg-foreground text-background hover:opacity-90 transition-opacity">
-          {service.cta}
-        </button>
-      </div>
+// --- Services Sidebar ---
+const ServicesSidebar = () => (
+  <div className="space-y-3">
+    {services.map((service, i) => (
+      <ServiceCard key={i} service={service} />
     ))}
   </div>
 );
@@ -292,7 +393,7 @@ const OverviewTab = () => (
   <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6">
     <div className="space-y-6">
       {/* Activity */}
-      <div className="border border-border rounded-xl p-5 bg-card">
+      <div className="border border-border rounded-xl p-5 bg-card overflow-hidden">
         <h3 className="text-base font-semibold text-foreground mb-4">Activity</h3>
         <ActivityHeatmap />
       </div>
@@ -385,7 +486,7 @@ const FeedTab = () => {
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className="text-sm font-semibold text-foreground">{post.author} {post.flag}</span>
                   <span className="text-xs text-muted-foreground">Added in</span>
-                  <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">{post.category}</span>
+                  <span className="text-xs bg-secondary text-secondary-foreground px-2 py-0.5 rounded-full font-medium">{post.category}</span>
                   <span className="text-xs text-muted-foreground">{post.time}</span>
                 </div>
                 <div className="flex items-center justify-end">
@@ -396,7 +497,7 @@ const FeedTab = () => {
 
             <p className="text-sm text-foreground mt-3 whitespace-pre-line">{post.text}</p>
 
-            {post.images.length > 0 && (
+            {post.images && post.images.length > 0 && (
               <div className="flex gap-2 mt-3">
                 {post.images.map((img, j) => (
                   <img key={j} src={img} alt="" className="flex-1 rounded-lg object-cover h-40" />
@@ -446,7 +547,7 @@ const FeedTab = () => {
         <div className="border border-border rounded-xl p-4 bg-card">
           <h4 className="text-sm font-semibold text-foreground mb-3">Create post</h4>
           <div className="mb-2">
-            <span className="text-xs text-amber-600 bg-amber-50 px-2 py-0.5 rounded">Hello Community ▾</span>
+            <span className="text-xs bg-secondary text-secondary-foreground px-2 py-0.5 rounded">Hello Community ▾</span>
           </div>
           <div className="flex items-start gap-2 mb-3">
             <img src={mentorData.avatar} alt="" className="h-6 w-6 rounded-full object-cover" />
@@ -466,30 +567,7 @@ const FeedTab = () => {
         </div>
 
         {/* Services list */}
-        <div className="border border-border rounded-xl p-4 bg-card">
-          <h4 className="text-sm font-semibold text-foreground mb-3">Services</h4>
-          {services.map((s, i) => (
-            <div key={i} className="flex items-center justify-between py-2 border-b border-border last:border-0">
-              <span className="text-sm text-foreground">{s.title}</span>
-              <div className={`p-1.5 rounded-lg ${s.color}`}>
-                <s.icon className="h-3.5 w-3.5" />
-              </div>
-            </div>
-          ))}
-          <div className="mt-3">
-            <p className="text-xs text-muted-foreground mb-1">What's included:</p>
-            <ul className="space-y-1 text-xs text-muted-foreground">
-              {services[3].included?.map((item, j) => (
-                <li key={j}>✦ {item}</li>
-              ))}
-            </ul>
-            <div className="flex items-center justify-between mt-3">
-              <span className="text-sm font-semibold">{services[3].price}</span>
-              <span className="flex items-center gap-1 text-xs text-muted-foreground"><Star className="h-3 w-3" /> {services[3].rating}</span>
-            </div>
-            <button className="w-full mt-2 py-2.5 text-sm font-medium bg-foreground text-background rounded-lg">Subscribe</button>
-          </div>
-        </div>
+        <ServicesSidebar />
       </div>
     </div>
   );
@@ -550,10 +628,10 @@ const ProfileHeader = () => {
 
   return (
     <>
-      {/* Cover — abstract gradient, no people */}
+      {/* Cover — subtle gradient using design tokens */}
       <div
-        className="relative h-40 md:h-52"
-        style={{ background: "linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)" }}
+        className="relative h-40 md:h-52 bg-secondary"
+        style={{ background: "linear-gradient(135deg, hsl(var(--secondary)) 0%, hsl(var(--muted)) 50%, hsl(var(--accent)) 100%)" }}
       />
 
       {/* Profile info */}
@@ -567,16 +645,7 @@ const ProfileHeader = () => {
               className="h-28 w-28 rounded-full border-4 border-background object-cover shadow-lg"
             />
             {mentorData.available && (
-              <span
-                className="absolute bottom-1 left-1/2 -translate-x-1/2 whitespace-nowrap font-medium flex items-center gap-1"
-                style={{
-                  fontSize: "10px",
-                  background: "#D5F2DA",
-                  color: "#3B6643",
-                  padding: "3px 10px",
-                  borderRadius: "42px",
-                }}
-              >
+              <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap font-medium flex items-center gap-1 text-[10px] bg-secondary text-secondary-foreground px-2.5 py-1 rounded-full border border-border">
                 <Zap className="h-3 w-3" /> Available ASAP
               </span>
             )}
@@ -622,8 +691,8 @@ const ProfileHeader = () => {
             </div>
           </div>
 
-          {/* Actions */}
-          <div className="flex items-center gap-2">
+          {/* Actions — stacked vertically to avoid badge overlap */}
+          <div className="flex items-center gap-2 md:self-end md:mb-2">
             <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-foreground text-background rounded-lg hover:opacity-90 transition-opacity">
               <MessageSquare className="h-4 w-4" /> Message
             </button>
