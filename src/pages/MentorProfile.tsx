@@ -575,7 +575,7 @@ const FeedTab = ({ mentor }: { mentor: NonNullable<MentorInfo> }) => {
             </div>
 
             <div className="flex items-center gap-2 mt-3 pt-3 border-t border-border">
-              <img src={mentorData.avatar} alt="" className="h-6 w-6 rounded-full object-cover" />
+              <img src={mentor.avatar} alt="" className="h-6 w-6 rounded-full object-cover" />
               <span className="text-xs text-muted-foreground flex-1">Reply to {post.author}...</span>
               <button className="px-3 py-1 text-xs font-medium bg-foreground text-background rounded-md">Post</button>
             </div>
