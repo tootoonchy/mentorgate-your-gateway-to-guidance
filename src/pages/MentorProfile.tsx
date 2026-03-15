@@ -234,14 +234,9 @@ const courses = [
 
 // --- Activity Heatmap (GitHub-style, ending today) ---
 const ActivityHeatmap = () => {
-  const levels = [
-    "bg-muted",
-    "hsl(var(--muted-foreground) / 0.15)",
-    "hsl(var(--muted-foreground) / 0.3)",
-    "hsl(var(--muted-foreground) / 0.5)",
-    "hsl(var(--foreground) / 0.8)",
-  ];
-  const levelClasses = ["bg-muted", "bg-secondary", "bg-muted-foreground/20", "bg-muted-foreground/40", "bg-foreground/70"];
+  // GitHub-style green palette
+  const greenColors = ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"];
+  const levelClasses = ["bg-[#ebedf0]", "bg-[#9be9a8]", "bg-[#40c463]", "bg-[#30a14e]", "bg-[#216e39]"];
 
   // Generate 365 days of data ending today
   const today = new Date();
