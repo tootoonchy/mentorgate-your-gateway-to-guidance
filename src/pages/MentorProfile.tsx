@@ -5,7 +5,7 @@ import {
   MessageSquare, UserPlus, Linkedin, Instagram, Facebook, Twitter, Youtube,
   ExternalLink, ChevronDown, ChevronLeft, ChevronRight, Video, UserCheck,
   Users2, Building2, Play, MoreHorizontal, ThumbsUp, Heart, MessageCircle,
-  Search, SlidersHorizontal, Lock, Clock
+  Search, SlidersHorizontal, Lock, Clock, Zap
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 
@@ -550,24 +550,34 @@ const ProfileHeader = () => {
 
   return (
     <>
-      {/* Cover */}
-      <div className="relative h-40 md:h-56 bg-gradient-to-br from-purple-400 via-pink-300 to-blue-400">
-        <img src={mentorData.cover} alt="Cover" className="w-full h-full object-cover" />
-      </div>
+      {/* Cover — abstract gradient, no people */}
+      <div
+        className="relative h-40 md:h-52"
+        style={{ background: "linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)" }}
+      />
 
       {/* Profile info */}
-      <div className="max-w-5xl mx-auto px-4 md:px-6 -mt-16 relative z-10 pb-6">
+      <div className="max-w-5xl mx-auto px-4 md:px-6 -mt-14 relative z-10 pb-4">
         <div className="flex flex-col md:flex-row md:items-end gap-4">
           {/* Avatar */}
           <div className="relative shrink-0">
             <img
               src={mentorData.avatar}
               alt={mentorData.name}
-              className="h-28 w-28 rounded-full border-4 border-background object-cover"
+              className="h-28 w-28 rounded-full border-4 border-background object-cover shadow-lg"
             />
             {mentorData.available && (
-              <span className="absolute bottom-1 left-1/2 -translate-x-1/2 text-[10px] bg-amber-400 text-foreground px-2 py-0.5 rounded-full font-medium whitespace-nowrap">
-                ⚡ Available ASAP
+              <span
+                className="absolute bottom-1 left-1/2 -translate-x-1/2 whitespace-nowrap font-medium flex items-center gap-1"
+                style={{
+                  fontSize: "10px",
+                  background: "#D5F2DA",
+                  color: "#3B6643",
+                  padding: "3px 10px",
+                  borderRadius: "42px",
+                }}
+              >
+                <Zap className="h-3 w-3" /> Available ASAP
               </span>
             )}
           </div>
@@ -578,7 +588,9 @@ const ProfileHeader = () => {
               <h1 className="text-xl font-bold text-foreground">{mentorData.name}</h1>
               <span>{mentorData.flag}</span>
             </div>
-            <p className="text-sm text-muted-foreground">{mentorData.role} · {mentorData.company}</p>
+            <p className="text-sm text-muted-foreground mt-0.5">
+              {mentorData.role} <span className="mx-1 opacity-40">·</span> {mentorData.company}
+            </p>
 
             <div className="flex flex-wrap items-center gap-4 mt-2 text-xs text-muted-foreground">
               <span className="flex items-center gap-1"><MapPin className="h-3.5 w-3.5" /> {mentorData.location}</span>
@@ -588,9 +600,9 @@ const ProfileHeader = () => {
 
             <div className="flex flex-wrap items-center gap-3 mt-1.5 text-xs text-muted-foreground">
               <span className="flex items-center gap-1"><Star className="h-3.5 w-3.5" /> {mentorData.reviews}</span>
-              <span>·</span>
+              <span className="opacity-40">·</span>
               <span className="flex items-center gap-1"><Users className="h-3.5 w-3.5" /> {mentorData.subscribers}</span>
-              <span>·</span>
+              <span className="opacity-40">·</span>
               <span className="flex items-center gap-1"><CheckCircle className="h-3.5 w-3.5" /> {mentorData.sessions}</span>
             </div>
 

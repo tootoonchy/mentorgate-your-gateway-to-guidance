@@ -1,6 +1,21 @@
 import { MapPin, Globe, Clock, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 
+const gradientPresets = [
+  "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+  "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+  "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+  "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+  "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
+  "linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)",
+  "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)",
+  "linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%)",
+  "linear-gradient(135deg, #fddb92 0%, #d1fdff 100%)",
+  "linear-gradient(135deg, #c1dfc4 0%, #deecdd 100%)",
+  "linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%)",
+  "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)",
+];
+
 interface MentorCardProps {
   name: string;
   role: string;
@@ -12,6 +27,7 @@ interface MentorCardProps {
   avatarImage: string;
   flag?: string;
   available?: boolean;
+  index?: number;
 }
 
 const MentorCard = ({
@@ -21,10 +37,10 @@ const MentorCard = ({
   location,
   languages,
   experience,
-  coverImage,
   avatarImage,
   flag = "🇺🇸",
   available = true,
+  index = 0,
 }: MentorCardProps) => {
   return (
     <div
@@ -43,7 +59,7 @@ const MentorCard = ({
           style={{
             height: "84px",
             borderRadius: "2.8px 2.8px 0 0",
-            background: `linear-gradient(135deg, hsl(var(--muted)) 0%, hsl(var(--accent)) 50%, hsl(var(--border)) 100%)`,
+            background: gradientPresets[index % gradientPresets.length],
           }}
         />
 
