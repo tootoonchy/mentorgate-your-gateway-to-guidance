@@ -453,7 +453,7 @@ const OverviewTab = ({ mentor }: { mentor: NonNullable<MentorInfo> }) => (
       <div className="border border-border rounded-xl p-5 bg-card">
         <h3 className="text-base font-semibold text-foreground mb-3">Expertise</h3>
         <div className="flex flex-wrap gap-2">
-          {mentorData.expertise.map((tag) => (
+          {mentor.expertise.map((tag) => (
             <span key={tag} className="px-3 py-1.5 text-xs font-medium border border-border rounded-full text-foreground bg-background">
               ✅ {tag}
             </span>
