@@ -612,7 +612,7 @@ const ServicesSidebar = () => (
 type MentorInfo = ReturnType<typeof getMentorFromSlug> & {};
 
 const OverviewTab = ({ mentor }: { mentor: NonNullable<MentorInfo> }) => (
-  <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6">
+  <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-6">
     <div className="space-y-6">
       {/* Activity */}
       <div className="border border-border rounded-xl p-5 bg-card overflow-hidden">
