@@ -604,7 +604,7 @@ const ServicesSidebar = () => (
       Services
     </h3>
     {services.map((service, i) => (
-      <ServiceCard key={i} service={service} zIndex={i} />
+      <ServiceCard key={i} service={service} zIndex={i} defaultOpen={i === services.length - 1} />
     ))}
   </div>
 );
