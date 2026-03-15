@@ -1,4 +1,5 @@
 import { MapPin, Globe, Clock, MessageCircle, Heart } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface MentorCardProps {
   name: string;
