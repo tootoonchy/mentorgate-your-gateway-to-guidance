@@ -5,7 +5,7 @@ import {
   MessageSquare, UserPlus, Linkedin, Instagram, Facebook, Twitter, Youtube,
   ExternalLink, ChevronDown, ChevronLeft, ChevronRight, Video, UserCheck,
   Users2, Building2, Play, MoreHorizontal, ThumbsUp, Heart, MessageCircle,
-  Search, SlidersHorizontal, Lock, Clock
+  Search, SlidersHorizontal, Lock, Clock, Zap
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 
