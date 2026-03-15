@@ -90,9 +90,12 @@ const MentorCard = ({
       </div>
 
       {/* Footer */}
-      <button className="w-full py-2.5 text-sm font-medium text-foreground bg-muted hover:bg-accent transition-colors border-t border-border">
+      <Link
+        to={`/mentor/${name.toLowerCase().replace(/\s+/g, "-")}`}
+        className="block w-full py-2.5 text-sm font-medium text-foreground bg-muted hover:bg-accent transition-colors border-t border-border text-center"
+      >
         View Profile
-      </button>
+      </Link>
     </div>
   );
 };
