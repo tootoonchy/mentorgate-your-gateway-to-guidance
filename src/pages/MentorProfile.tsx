@@ -50,8 +50,10 @@ const defaultBio = `With over 18 years of experience in engineering, product man
 
 function getMentorFromSlug(slug: string | undefined) {
   if (!slug) return null;
+  const normalizedSlug = slug.toLowerCase().replace(/[^a-z0-9-]/g, "");
   const found = allMentors.find(
-    (m) => m.name.toLowerCase().replace(/\s+/g, "-") === slug
+    (m) => m.name.toLowerCase().replace(/[^a-z0-9]/g, "").replace(/\s+/g, "-") === normalizedSlug ||
+           m.name.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "") === slug
   );
   if (!found) return null;
   const idx = allMentors.indexOf(found);
@@ -732,7 +734,7 @@ const ProfileHeader = ({ mentor }: { mentor: NonNullable<MentorInfo> }) => {
   );
 };
 
-// --- Main Page ---
+// --- Main Page Component ---
 const tabs = ["Overview", "Feed", "Podcasts", "Courses", "Files", "Calendar"];
 
 const MentorProfile = () => {
