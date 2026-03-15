@@ -81,6 +81,7 @@ const services = [
   {
     title: "1:1 Video Consultation",
     icon: Video,
+    tagColor: "#D7BDFF",
     description: "Book a 1:1 live video consultation & get personalized advice",
     nextAvailable: "Friday, 31 January\n9:00am (GMT +8)",
     price: "Starting at $80",
@@ -90,6 +91,7 @@ const services = [
   {
     title: "1:1 Mentorship",
     icon: UserCheck,
+    tagColor: "#DCF251",
     included: [
       "1:1 Chat (Unlimited)",
       "1:1 Video Calls (30 min / month)",
@@ -106,6 +108,7 @@ const services = [
   {
     title: "Community Membership",
     icon: Users2,
+    tagColor: "#FFD836",
     included: [
       "Details on how to build & manage a successful restaurant",
       "Advice on how to scale operations, launch a new location, & enter a new market",
@@ -119,6 +122,7 @@ const services = [
   {
     title: "Corporate Mentorship",
     icon: Building2,
+    tagColor: "#C4DEF8",
     included: [
       "B2B and corporate clients booking for workshop or limited time experiences.",
       "Common mistakes when building a restaurant business",
