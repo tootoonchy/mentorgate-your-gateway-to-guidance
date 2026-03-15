@@ -9,25 +9,71 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 
-// --- Mock Data ---
-const mentorData = {
-  name: "Ney Batista",
-  flag: "🇺🇸",
-  role: "Product Designer",
-  company: "MentorGate",
-  location: "Charleston, United states",
-  languages: "English, Spanish",
-  experience: "10+ years of experience",
-  reviews: "Reviews (4.9 - 2.4k)",
-  subscribers: "124 Subscribers",
-  sessions: "37 Completed sessions",
-  available: true,
-  avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=200&h=200&fit=crop&crop=face",
-  cover: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=1200&h=300&fit=crop",
-  bio: `With over 18 years of experience in engineering, product management, and executive leadership, I bring a unique blend of technical depth, strategic vision, and operational expertise. I've built and scaled products, teams, and companies, working at the intersection of cloud-native technologies, observability, and organizational transformation.`,
-  expertise: ["Building a team", "Go to market strategy", "Leadership", "Product marketing", "Technology and tools"],
-  socialLinks: ["linkedin", "instagram", "facebook", "twitter", "youtube"],
-};
+// --- All mentors (same data as Index page) ---
+const allMentors = [
+  { name: "Heidi Green", role: "UX/UI Designer", company: "Apple", location: "Charleston, US", languages: "English, Arabic", experience: "6+ years", flag: "🇺🇸" },
+  { name: "Calvin Horton", role: "Product Manager", company: "Google", location: "London, UK", languages: "English, French", experience: "8+ years", flag: "🇬🇧" },
+  { name: "Camila Ruiz", role: "Data Scientist", company: "Meta", location: "Madrid, Spain", languages: "Spanish, English", experience: "5+ years", flag: "🇪🇸" },
+  { name: "Wayne Elliott", role: "Software Engineer", company: "Microsoft", location: "Berlin, Germany", languages: "English, German", experience: "10+ years", flag: "🇩🇪" },
+  { name: "Samantha Gonzales", role: "Marketing Lead", company: "Spotify", location: "Stockholm, Sweden", languages: "English, Swedish", experience: "7+ years", flag: "🇸🇪" },
+  { name: "Carl Washington", role: "UX Researcher", company: "Amazon", location: "Seattle, US", languages: "English", experience: "4+ years", flag: "🇺🇸" },
+  { name: "Isobel Horton", role: "Design Director", company: "Figma", location: "Toronto, Canada", languages: "English, French", experience: "12+ years", flag: "🇨🇦" },
+  { name: "Manuel Dean", role: "Frontend Engineer", company: "Stripe", location: "São Paulo, Brazil", languages: "Portuguese, English", experience: "6+ years", flag: "🇧🇷" },
+  { name: "Sandra Daniels", role: "Content Strategist", company: "Notion", location: "Paris, France", languages: "French, English", experience: "5+ years", flag: "🇫🇷" },
+  { name: "Floyd Allen", role: "DevOps Engineer", company: "Netflix", location: "Tokyo, Japan", languages: "English, Japanese", experience: "9+ years", flag: "🇯🇵" },
+  { name: "Kristin Watson", role: "Lead UX/UI Designer", company: "Airbnb", location: "Melbourne, Australia", languages: "English", experience: "11+ years", flag: "🇦🇺" },
+  { name: "Ahmed Hassan", role: "AI Engineer", company: "OpenAI", location: "Dubai, UAE", languages: "Arabic, English", experience: "5+ years", flag: "🇦🇪" },
+  { name: "Yuki Tanaka", role: "Product Designer", company: "LINE", location: "Osaka, Japan", languages: "Japanese, English", experience: "7+ years", flag: "🇯🇵" },
+  { name: "Priya Sharma", role: "Growth Manager", company: "Razorpay", location: "Mumbai, India", languages: "Hindi, English", experience: "6+ years", flag: "🇮🇳" },
+  { name: "Luca Rossi", role: "Backend Engineer", company: "Shopify", location: "Milan, Italy", languages: "Italian, English", experience: "8+ years", flag: "🇮🇹" },
+  { name: "Elena Petrov", role: "UX Writer", company: "Canva", location: "Sydney, Australia", languages: "English, Russian", experience: "4+ years", flag: "🇦🇺" },
+  { name: "James O'Brien", role: "CTO", company: "Intercom", location: "Dublin, Ireland", languages: "English, Irish", experience: "15+ years", flag: "🇮🇪" },
+  { name: "Sofia Martinez", role: "Brand Designer", company: "Uber", location: "Mexico City, Mexico", languages: "Spanish, English", experience: "6+ years", flag: "🇲🇽" },
+  { name: "Chen Wei", role: "ML Engineer", company: "ByteDance", location: "Shanghai, China", languages: "Mandarin, English", experience: "7+ years", flag: "🇨🇳" },
+  { name: "Fatima Al-Rashid", role: "PM Lead", company: "Careem", location: "Riyadh, Saudi Arabia", languages: "Arabic, English", experience: "9+ years", flag: "🇸🇦" },
+  { name: "Oliver Schmidt", role: "Full Stack Dev", company: "SAP", location: "Munich, Germany", languages: "German, English", experience: "8+ years", flag: "🇩🇪" },
+  { name: "Anya Kowalski", role: "UX/UI Designer", company: "Revolut", location: "Warsaw, Poland", languages: "Polish, English", experience: "5+ years", flag: "🇵🇱" },
+  { name: "Tariq Osman", role: "Data Engineer", company: "Grab", location: "Singapore", languages: "English, Malay", experience: "6+ years", flag: "🇸🇬" },
+  { name: "Maria Santos", role: "Scrum Master", company: "Atlassian", location: "Lisbon, Portugal", languages: "Portuguese, English", experience: "7+ years", flag: "🇵🇹" },
+];
+
+const avatarImages = [
+  "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=200&h=200&fit=crop&crop=face",
+  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face",
+  "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=face",
+  "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face",
+  "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face",
+  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face",
+];
+
+const defaultBio = `With over 18 years of experience in engineering, product management, and executive leadership, I bring a unique blend of technical depth, strategic vision, and operational expertise. I've built and scaled products, teams, and companies, working at the intersection of cloud-native technologies, observability, and organizational transformation.`;
+
+function getMentorFromSlug(slug: string | undefined) {
+  if (!slug) return null;
+  const found = allMentors.find(
+    (m) => m.name.toLowerCase().replace(/\s+/g, "-") === slug
+  );
+  if (!found) return null;
+  const idx = allMentors.indexOf(found);
+  return {
+    name: found.name,
+    flag: found.flag,
+    role: found.role,
+    company: found.company,
+    location: found.location,
+    languages: found.languages,
+    experience: found.experience + " of experience",
+    reviews: "Reviews (4.9 - 2.4k)",
+    subscribers: "124 Subscribers",
+    sessions: "37 Completed sessions",
+    available: true,
+    avatar: avatarImages[idx % avatarImages.length],
+    cover: "",
+    bio: defaultBio,
+    expertise: ["Building a team", "Go to market strategy", "Leadership", "Product marketing", "Technology and tools"],
+    socialLinks: ["linkedin", "instagram", "facebook", "twitter", "youtube"],
+  };
+}
 
 const services = [
   {
