@@ -659,7 +659,7 @@ const CoursesTab = () => (
 );
 
 // --- Profile Header ---
-const ProfileHeader = () => {
+const ProfileHeader = ({ mentor }: { mentor: NonNullable<MentorInfo> }) => {
   const socialIcons: Record<string, any> = {
     linkedin: Linkedin,
     instagram: Instagram,
@@ -670,56 +670,42 @@ const ProfileHeader = () => {
 
   return (
     <>
-      {/* Cover — subtle gradient using design tokens */}
       <div
         className="relative h-40 md:h-52 bg-secondary"
         style={{ background: "linear-gradient(135deg, hsl(var(--secondary)) 0%, hsl(var(--muted)) 50%, hsl(var(--accent)) 100%)" }}
       />
-
-      {/* Profile info */}
       <div className="max-w-5xl mx-auto px-4 md:px-6 -mt-14 relative z-10 pb-4">
         <div className="flex flex-col md:flex-row md:items-end gap-4">
-          {/* Avatar */}
           <div className="relative shrink-0">
-            <img
-              src={mentorData.avatar}
-              alt={mentorData.name}
-              className="h-28 w-28 rounded-full border-4 border-background object-cover shadow-lg"
-            />
-            {mentorData.available && (
+            <img src={mentor.avatar} alt={mentor.name} className="h-28 w-28 rounded-full border-4 border-background object-cover shadow-lg" />
+            {mentor.available && (
               <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap font-medium flex items-center gap-1 text-[10px] bg-secondary text-secondary-foreground px-2.5 py-1 rounded-full border border-border">
                 <Zap className="h-3 w-3" /> Available ASAP
               </span>
             )}
           </div>
-
-          {/* Info */}
           <div className="flex-1 pt-2">
             <div className="flex items-center gap-2">
-              <h1 className="text-xl font-bold text-foreground">{mentorData.name}</h1>
-              <span>{mentorData.flag}</span>
+              <h1 className="text-xl font-bold text-foreground">{mentor.name}</h1>
+              <span>{mentor.flag}</span>
             </div>
             <p className="text-sm text-muted-foreground mt-0.5">
-              {mentorData.role} <span className="mx-1 opacity-40">·</span> {mentorData.company}
+              {mentor.role} <span className="mx-1 opacity-40">·</span> {mentor.company}
             </p>
-
             <div className="flex flex-wrap items-center gap-4 mt-2 text-xs text-muted-foreground">
-              <span className="flex items-center gap-1"><MapPin className="h-3.5 w-3.5" /> {mentorData.location}</span>
-              <span className="flex items-center gap-1"><Globe className="h-3.5 w-3.5" /> {mentorData.languages}</span>
-              <span className="flex items-center gap-1"><Calendar className="h-3.5 w-3.5" /> {mentorData.experience}</span>
+              <span className="flex items-center gap-1"><MapPin className="h-3.5 w-3.5" /> {mentor.location}</span>
+              <span className="flex items-center gap-1"><Globe className="h-3.5 w-3.5" /> {mentor.languages}</span>
+              <span className="flex items-center gap-1"><Calendar className="h-3.5 w-3.5" /> {mentor.experience}</span>
             </div>
-
             <div className="flex flex-wrap items-center gap-3 mt-1.5 text-xs text-muted-foreground">
-              <span className="flex items-center gap-1"><Star className="h-3.5 w-3.5" /> {mentorData.reviews}</span>
+              <span className="flex items-center gap-1"><Star className="h-3.5 w-3.5" /> {mentor.reviews}</span>
               <span className="opacity-40">·</span>
-              <span className="flex items-center gap-1"><Users className="h-3.5 w-3.5" /> {mentorData.subscribers}</span>
+              <span className="flex items-center gap-1"><Users className="h-3.5 w-3.5" /> {mentor.subscribers}</span>
               <span className="opacity-40">·</span>
-              <span className="flex items-center gap-1"><CheckCircle className="h-3.5 w-3.5" /> {mentorData.sessions}</span>
+              <span className="flex items-center gap-1"><CheckCircle className="h-3.5 w-3.5" /> {mentor.sessions}</span>
             </div>
-
-            {/* Social links */}
             <div className="flex items-center gap-3 mt-3">
-              {mentorData.socialLinks.map((social) => {
+              {mentor.socialLinks.map((social) => {
                 const Icon = socialIcons[social];
                 return Icon ? (
                   <a key={social} href="#" className="text-foreground hover:text-muted-foreground transition-colors">
@@ -732,8 +718,6 @@ const ProfileHeader = () => {
               </a>
             </div>
           </div>
-
-          {/* Actions — stacked vertically to avoid badge overlap */}
           <div className="flex items-center gap-2 md:self-end md:mb-2">
             <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-foreground text-background rounded-lg hover:opacity-90 transition-opacity">
               <MessageSquare className="h-4 w-4" /> Message
