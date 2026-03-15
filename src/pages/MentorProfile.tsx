@@ -429,8 +429,9 @@ const ServicesSidebar = () => (
   </div>
 );
 
-// --- Overview Tab ---
-const OverviewTab = () => (
+type MentorInfo = ReturnType<typeof getMentorFromSlug> & {};
+
+const OverviewTab = ({ mentor }: { mentor: NonNullable<MentorInfo> }) => (
   <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6">
     <div className="space-y-6">
       {/* Activity */}
@@ -442,7 +443,7 @@ const OverviewTab = () => (
       {/* Biography */}
       <div className="border border-border rounded-xl p-5 bg-card">
         <h3 className="text-base font-semibold text-foreground mb-3">Biography</h3>
-        <p className="text-sm text-muted-foreground leading-relaxed">{mentorData.bio}</p>
+        <p className="text-sm text-muted-foreground leading-relaxed">{mentor.bio}</p>
         <button className="flex items-center gap-1 mt-3 text-sm text-foreground font-medium">
           Read More <ChevronDown className="h-4 w-4" />
         </button>
