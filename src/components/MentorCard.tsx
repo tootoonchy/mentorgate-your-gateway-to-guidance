@@ -59,7 +59,7 @@ const MentorCard = ({
           style={{
             height: "84px",
             borderRadius: "2.8px 2.8px 0 0",
-            background: `linear-gradient(135deg, hsl(var(--muted)) 0%, hsl(var(--accent)) 50%, hsl(var(--border)) 100%)`,
+            background: gradientPresets[index % gradientPresets.length],
           }}
         />
 
