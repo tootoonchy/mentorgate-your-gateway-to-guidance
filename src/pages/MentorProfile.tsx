@@ -676,7 +676,7 @@ const FeedTab = ({ mentor }: { mentor: NonNullable<MentorInfo> }) => {
   const categories = ["All", "Career advice", "Mentorship", "Community", "Technology", "Tech Tools", "Podca"];
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-6">
       <div className="space-y-4">
         <div className="border border-border rounded-xl p-5 bg-card">
           <div className="flex items-center justify-between mb-4">
