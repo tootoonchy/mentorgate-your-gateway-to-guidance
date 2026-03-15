@@ -1,4 +1,4 @@
-import { MapPin, Globe, Clock, MessageCircle, Heart } from "lucide-react";
+import { MapPin, Globe, Clock, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface MentorCardProps {
@@ -27,72 +27,206 @@ const MentorCard = ({
   available = true,
 }: MentorCardProps) => {
   return (
-    <div className="rounded-xl border border-border bg-card overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-      {/* Cover image */}
-      <div className="relative h-32 bg-muted">
-        <img
-          src={coverImage}
-          alt={`${name} cover`}
-          className="w-full h-full object-cover"
+    <div
+      className="flex flex-col items-start isolate bg-card overflow-hidden"
+      style={{
+        width: "251.76px",
+        boxShadow: "0px 0px 28px rgba(203, 204, 205, 0.3)",
+        borderRadius: "5.6px",
+      }}
+    >
+      {/* Cover area with background image + avatar */}
+      <div className="relative w-full" style={{ height: "141.59px" }}>
+        {/* Banner background — abstract gradient instead of people */}
+        <div
+          className="w-full bg-muted"
+          style={{
+            height: "84px",
+            borderRadius: "2.8px 2.8px 0 0",
+            background: `linear-gradient(135deg, hsl(var(--muted)) 0%, hsl(var(--accent)) 50%, hsl(var(--border)) 100%)`,
+          }}
         />
 
-        {/* Action icons */}
-        <div className="absolute top-2 right-2 flex gap-1">
-          <button className="p-1.5 rounded-full bg-background/80 backdrop-blur-sm text-foreground hover:bg-background transition-colors">
-            <MessageCircle className="h-3.5 w-3.5" />
-          </button>
-          <button className="p-1.5 rounded-full bg-background/80 backdrop-blur-sm text-destructive hover:bg-background transition-colors">
-            <Heart className="h-3.5 w-3.5" />
-          </button>
+        {/* Badges — TOP, yellow, blue */}
+        <div
+          className="absolute flex gap-[5.26px]"
+          style={{ right: "13.52px", top: "84px" }}
+        >
+          <div className="flex items-center justify-center bg-foreground text-background" style={{ width: "21px", height: "21px" }}>
+            <span className="text-[5.25px] font-bold tracking-wide">TOP</span>
+          </div>
+          <div className="flex items-center justify-center" style={{ width: "21px", height: "21px", background: "#FFD836" }}>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="7" r="4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/></svg>
+          </div>
+          <div className="flex items-center justify-center" style={{ width: "21px", height: "21px", background: "#D2DEF7" }}>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24A2.5 2.5 0 0 1 9.5 2"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24A2.5 2.5 0 0 0 14.5 2"/></svg>
+          </div>
         </div>
 
         {/* Avatar */}
-        <div className="absolute -bottom-5 left-3">
-          <div className="relative">
+        <div className="absolute flex items-center" style={{ left: "16.82px", top: "0px", paddingTop: "0px" }}>
+          <div className="relative" style={{ width: "85.53px", height: "85.53px" }}>
             <img
               src={avatarImage}
               alt={name}
-              className="h-12 w-12 rounded-full border-2 border-background object-cover"
+              className="object-cover"
+              style={{
+                width: "85.53px",
+                height: "85.53px",
+                border: "2.8px solid white",
+                borderRadius: "42.77px",
+              }}
             />
             {available && (
-              <span className="absolute -bottom-1 left-0 right-0 mx-auto w-max text-[8px] bg-green-500 text-background px-1.5 py-0.5 rounded-full font-medium">
-                Available ASAP
-              </span>
+              <div
+                className="absolute flex items-center gap-[2.14px]"
+                style={{
+                  left: "0px",
+                  bottom: "0px",
+                  width: "87.71px",
+                  height: "17.49px",
+                  background: "#D5F2DA",
+                  borderRadius: "42.77px",
+                  padding: "4.96px 7px 3.97px",
+                }}
+              >
+                <Zap style={{ width: "8.55px", height: "8.55px", color: "#3B6643" }} />
+                <span
+                  style={{
+                    fontFamily: "'Geist', sans-serif",
+                    fontWeight: 400,
+                    fontSize: "9px",
+                    lineHeight: "6px",
+                    color: "#3B6643",
+                  }}
+                >
+                  Available ASAP
+                </span>
+              </div>
             )}
           </div>
         </div>
       </div>
 
-      {/* Content */}
-      <div className="pt-7 px-3 pb-3">
-        <div className="flex items-center gap-1.5">
-          <h3 className="text-sm font-semibold text-foreground truncate">{name}</h3>
-          <span className="text-xs">{flag}</span>
+      {/* Content / Features */}
+      <div
+        className="flex flex-col items-start w-full"
+        style={{ padding: "11.21px 16.82px 11.21px" }}
+      >
+        {/* Name + role */}
+        <div className="flex flex-col gap-[2.8px]" style={{ paddingRight: "22.42px" }}>
+          <div className="flex items-center gap-1">
+            <span
+              className="text-foreground"
+              style={{
+                fontFamily: "'Geist', sans-serif",
+                fontWeight: 700,
+                fontSize: "14px",
+                lineHeight: "18px",
+                letterSpacing: "0.01em",
+              }}
+            >
+              {name}
+            </span>
+            <span className="text-xs">{flag}</span>
+          </div>
+          <div className="flex items-center gap-[4.9px]">
+            <span
+              style={{
+                fontFamily: "'Geist', sans-serif",
+                fontWeight: 500,
+                fontSize: "12px",
+                lineHeight: "17px",
+                letterSpacing: "0.01em",
+                color: "rgba(0,0,0,0.9)",
+              }}
+            >
+              {role}
+            </span>
+            <span style={{ width: "1.4px", height: "1.4px", background: "rgba(0,0,0,0.54)", borderRadius: "50%" }} />
+            <span
+              style={{
+                fontFamily: "'Geist', sans-serif",
+                fontWeight: 500,
+                fontSize: "12px",
+                lineHeight: "17px",
+                letterSpacing: "0.01em",
+                color: "rgba(0,0,0,0.9)",
+              }}
+            >
+              {company}
+            </span>
+          </div>
         </div>
-        <p className="text-xs text-muted-foreground mt-0.5">
-          {role} · {company}
-        </p>
 
-        <div className="mt-3 space-y-1.5 text-xs text-muted-foreground">
-          <div className="flex items-center gap-1.5">
-            <MapPin className="h-3 w-3 shrink-0" />
-            <span className="truncate">{location}</span>
+        {/* Details */}
+        <div className="flex flex-wrap gap-[7.01px] mt-[14px]" style={{ maxWidth: "218.62px" }}>
+          <div className="flex items-center gap-[4.2px]">
+            <MapPin style={{ width: "16px", height: "16px", color: "rgba(0,0,0,0.8)" }} />
+            <span
+              style={{
+                fontFamily: "'Geist', sans-serif",
+                fontWeight: 400,
+                fontSize: "12px",
+                lineHeight: "17px",
+                letterSpacing: "0.01em",
+                color: "rgba(0,0,0,0.8)",
+              }}
+            >
+              {location}
+            </span>
           </div>
-          <div className="flex items-center gap-1.5">
-            <Globe className="h-3 w-3 shrink-0" />
-            <span>{languages}</span>
+          <div className="flex items-center gap-[4.2px]">
+            <Globe style={{ width: "16px", height: "16px", color: "rgba(0,0,0,0.8)" }} />
+            <span
+              style={{
+                fontFamily: "'Geist', sans-serif",
+                fontWeight: 400,
+                fontSize: "12px",
+                lineHeight: "17px",
+                letterSpacing: "0.01em",
+                color: "rgba(0,0,0,0.8)",
+              }}
+            >
+              {languages}
+            </span>
           </div>
-          <div className="flex items-center gap-1.5">
-            <Clock className="h-3 w-3 shrink-0" />
-            <span>{experience}</span>
+          <div className="flex items-center gap-[4.2px]">
+            <Clock style={{ width: "16px", height: "16px", color: "rgba(0,0,0,0.8)" }} />
+            <span
+              style={{
+                fontFamily: "'Geist', sans-serif",
+                fontWeight: 400,
+                fontSize: "12px",
+                lineHeight: "17px",
+                letterSpacing: "0.01em",
+                color: "rgba(0,0,0,0.8)",
+              }}
+            >
+              {experience}
+            </span>
           </div>
         </div>
       </div>
 
-      {/* Footer */}
+      {/* Divider */}
+      <div className="w-full" style={{ height: "0.7px", borderTop: "0.7px solid rgba(0,0,0,0.1)" }} />
+
+      {/* View Profile Button */}
       <Link
         to={`/mentor/${name.toLowerCase().replace(/\s+/g, "-")}`}
-        className="block w-full py-2.5 text-sm font-medium text-foreground bg-muted hover:bg-accent transition-colors border-t border-border text-center"
+        className="flex items-center justify-center w-full"
+        style={{
+          padding: "9.81px 11.21px",
+          height: "42.03px",
+          background: "#1A1A1A",
+          fontFamily: "'Geist', sans-serif",
+          fontWeight: 400,
+          fontSize: "14px",
+          lineHeight: "11px",
+          letterSpacing: "0.01em",
+          color: "#FFFFFF",
+        }}
       >
         View Profile
       </Link>
