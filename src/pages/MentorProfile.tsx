@@ -734,7 +734,7 @@ const ProfileHeader = ({ mentor }: { mentor: NonNullable<MentorInfo> }) => {
   );
 };
 
-// --- Main Page ---
+// --- Main Page Component ---
 const tabs = ["Overview", "Feed", "Podcasts", "Courses", "Files", "Calendar"];
 
 const MentorProfile = () => {
