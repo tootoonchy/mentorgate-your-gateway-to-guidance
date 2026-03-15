@@ -37,10 +37,10 @@ const MentorCard = ({
   location,
   languages,
   experience,
-  coverImage,
   avatarImage,
   flag = "🇺🇸",
   available = true,
+  index = 0,
 }: MentorCardProps) => {
   return (
     <div
