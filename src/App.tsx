@@ -1,25 +1,27 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { AppLayout } from './layouts/AppLayout';
-import { Dashboard } from './pages/Dashboard';
-import { MentorSearch } from './pages/MentorSearch';
-import { Activities } from './pages/Activities';
-import './App.css';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { Toaster } from "@/components/ui/toaster";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import Index from "./pages/Index.tsx";
+import NotFound from "./pages/NotFound.tsx";
 
-function App() {
-  return (
-    <Router>
-      <AppLayout>
+const queryClient = new QueryClient();
+
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navigate to="/mentors" replace />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/mentors" element={<MentorSearch />} />
-          <Route path="/activities" element={<Activities />} />
-          {/* Default fallback */}
-          <Route path="*" element={<Navigate to="/mentors" replace />} />
+          <Route path="/" element={<Index />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
-      </AppLayout>
-    </Router>
-  );
-}
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
 
 export default App;
