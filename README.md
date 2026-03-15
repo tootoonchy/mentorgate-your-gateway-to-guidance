@@ -1,5 +1,7 @@
 # MentorGate - Mentor Search Platform
 
+A platform connecting startup founders with experienced mentors for guidance and growth.
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
