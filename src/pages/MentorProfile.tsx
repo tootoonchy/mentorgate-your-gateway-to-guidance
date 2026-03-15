@@ -9,25 +9,71 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 
-// --- Mock Data ---
-const mentorData = {
-  name: "Ney Batista",
-  flag: "🇺🇸",
-  role: "Product Designer",
-  company: "MentorGate",
-  location: "Charleston, United states",
-  languages: "English, Spanish",
-  experience: "10+ years of experience",
-  reviews: "Reviews (4.9 - 2.4k)",
-  subscribers: "124 Subscribers",
-  sessions: "37 Completed sessions",
-  available: true,
-  avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=200&h=200&fit=crop&crop=face",
-  cover: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=1200&h=300&fit=crop",
-  bio: `With over 18 years of experience in engineering, product management, and executive leadership, I bring a unique blend of technical depth, strategic vision, and operational expertise. I've built and scaled products, teams, and companies, working at the intersection of cloud-native technologies, observability, and organizational transformation.`,
-  expertise: ["Building a team", "Go to market strategy", "Leadership", "Product marketing", "Technology and tools"],
-  socialLinks: ["linkedin", "instagram", "facebook", "twitter", "youtube"],
-};
+// --- All mentors (same data as Index page) ---
+const allMentors = [
+  { name: "Heidi Green", role: "UX/UI Designer", company: "Apple", location: "Charleston, US", languages: "English, Arabic", experience: "6+ years", flag: "🇺🇸" },
+  { name: "Calvin Horton", role: "Product Manager", company: "Google", location: "London, UK", languages: "English, French", experience: "8+ years", flag: "🇬🇧" },
+  { name: "Camila Ruiz", role: "Data Scientist", company: "Meta", location: "Madrid, Spain", languages: "Spanish, English", experience: "5+ years", flag: "🇪🇸" },
+  { name: "Wayne Elliott", role: "Software Engineer", company: "Microsoft", location: "Berlin, Germany", languages: "English, German", experience: "10+ years", flag: "🇩🇪" },
+  { name: "Samantha Gonzales", role: "Marketing Lead", company: "Spotify", location: "Stockholm, Sweden", languages: "English, Swedish", experience: "7+ years", flag: "🇸🇪" },
+  { name: "Carl Washington", role: "UX Researcher", company: "Amazon", location: "Seattle, US", languages: "English", experience: "4+ years", flag: "🇺🇸" },
+  { name: "Isobel Horton", role: "Design Director", company: "Figma", location: "Toronto, Canada", languages: "English, French", experience: "12+ years", flag: "🇨🇦" },
+  { name: "Manuel Dean", role: "Frontend Engineer", company: "Stripe", location: "São Paulo, Brazil", languages: "Portuguese, English", experience: "6+ years", flag: "🇧🇷" },
+  { name: "Sandra Daniels", role: "Content Strategist", company: "Notion", location: "Paris, France", languages: "French, English", experience: "5+ years", flag: "🇫🇷" },
+  { name: "Floyd Allen", role: "DevOps Engineer", company: "Netflix", location: "Tokyo, Japan", languages: "English, Japanese", experience: "9+ years", flag: "🇯🇵" },
+  { name: "Kristin Watson", role: "Lead UX/UI Designer", company: "Airbnb", location: "Melbourne, Australia", languages: "English", experience: "11+ years", flag: "🇦🇺" },
+  { name: "Ahmed Hassan", role: "AI Engineer", company: "OpenAI", location: "Dubai, UAE", languages: "Arabic, English", experience: "5+ years", flag: "🇦🇪" },
+  { name: "Yuki Tanaka", role: "Product Designer", company: "LINE", location: "Osaka, Japan", languages: "Japanese, English", experience: "7+ years", flag: "🇯🇵" },
+  { name: "Priya Sharma", role: "Growth Manager", company: "Razorpay", location: "Mumbai, India", languages: "Hindi, English", experience: "6+ years", flag: "🇮🇳" },
+  { name: "Luca Rossi", role: "Backend Engineer", company: "Shopify", location: "Milan, Italy", languages: "Italian, English", experience: "8+ years", flag: "🇮🇹" },
+  { name: "Elena Petrov", role: "UX Writer", company: "Canva", location: "Sydney, Australia", languages: "English, Russian", experience: "4+ years", flag: "🇦🇺" },
+  { name: "James O'Brien", role: "CTO", company: "Intercom", location: "Dublin, Ireland", languages: "English, Irish", experience: "15+ years", flag: "🇮🇪" },
+  { name: "Sofia Martinez", role: "Brand Designer", company: "Uber", location: "Mexico City, Mexico", languages: "Spanish, English", experience: "6+ years", flag: "🇲🇽" },
+  { name: "Chen Wei", role: "ML Engineer", company: "ByteDance", location: "Shanghai, China", languages: "Mandarin, English", experience: "7+ years", flag: "🇨🇳" },
+  { name: "Fatima Al-Rashid", role: "PM Lead", company: "Careem", location: "Riyadh, Saudi Arabia", languages: "Arabic, English", experience: "9+ years", flag: "🇸🇦" },
+  { name: "Oliver Schmidt", role: "Full Stack Dev", company: "SAP", location: "Munich, Germany", languages: "German, English", experience: "8+ years", flag: "🇩🇪" },
+  { name: "Anya Kowalski", role: "UX/UI Designer", company: "Revolut", location: "Warsaw, Poland", languages: "Polish, English", experience: "5+ years", flag: "🇵🇱" },
+  { name: "Tariq Osman", role: "Data Engineer", company: "Grab", location: "Singapore", languages: "English, Malay", experience: "6+ years", flag: "🇸🇬" },
+  { name: "Maria Santos", role: "Scrum Master", company: "Atlassian", location: "Lisbon, Portugal", languages: "Portuguese, English", experience: "7+ years", flag: "🇵🇹" },
+];
+
+const avatarImages = [
+  "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=200&h=200&fit=crop&crop=face",
+  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face",
+  "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=face",
+  "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face",
+  "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face",
+  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face",
+];
+
+const defaultBio = `With over 18 years of experience in engineering, product management, and executive leadership, I bring a unique blend of technical depth, strategic vision, and operational expertise. I've built and scaled products, teams, and companies, working at the intersection of cloud-native technologies, observability, and organizational transformation.`;
+
+function getMentorFromSlug(slug: string | undefined) {
+  if (!slug) return null;
+  const found = allMentors.find(
+    (m) => m.name.toLowerCase().replace(/\s+/g, "-") === slug
+  );
+  if (!found) return null;
+  const idx = allMentors.indexOf(found);
+  return {
+    name: found.name,
+    flag: found.flag,
+    role: found.role,
+    company: found.company,
+    location: found.location,
+    languages: found.languages,
+    experience: found.experience + " of experience",
+    reviews: "Reviews (4.9 - 2.4k)",
+    subscribers: "124 Subscribers",
+    sessions: "37 Completed sessions",
+    available: true,
+    avatar: avatarImages[idx % avatarImages.length],
+    cover: "",
+    bio: defaultBio,
+    expertise: ["Building a team", "Go to market strategy", "Leadership", "Product marketing", "Technology and tools"],
+    socialLinks: ["linkedin", "instagram", "facebook", "twitter", "youtube"],
+  };
+}
 
 const services = [
   {
@@ -188,14 +234,9 @@ const courses = [
 
 // --- Activity Heatmap (GitHub-style, ending today) ---
 const ActivityHeatmap = () => {
-  const levels = [
-    "bg-muted",
-    "hsl(var(--muted-foreground) / 0.15)",
-    "hsl(var(--muted-foreground) / 0.3)",
-    "hsl(var(--muted-foreground) / 0.5)",
-    "hsl(var(--foreground) / 0.8)",
-  ];
-  const levelClasses = ["bg-muted", "bg-secondary", "bg-muted-foreground/20", "bg-muted-foreground/40", "bg-foreground/70"];
+  // GitHub-style green palette
+  const greenColors = ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"];
+  const levelClasses = ["bg-[#ebedf0]", "bg-[#9be9a8]", "bg-[#40c463]", "bg-[#30a14e]", "bg-[#216e39]"];
 
   // Generate 365 days of data ending today
   const today = new Date();
@@ -388,8 +429,9 @@ const ServicesSidebar = () => (
   </div>
 );
 
-// --- Overview Tab ---
-const OverviewTab = () => (
+type MentorInfo = ReturnType<typeof getMentorFromSlug> & {};
+
+const OverviewTab = ({ mentor }: { mentor: NonNullable<MentorInfo> }) => (
   <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6">
     <div className="space-y-6">
       {/* Activity */}
@@ -401,7 +443,7 @@ const OverviewTab = () => (
       {/* Biography */}
       <div className="border border-border rounded-xl p-5 bg-card">
         <h3 className="text-base font-semibold text-foreground mb-3">Biography</h3>
-        <p className="text-sm text-muted-foreground leading-relaxed">{mentorData.bio}</p>
+        <p className="text-sm text-muted-foreground leading-relaxed">{mentor.bio}</p>
         <button className="flex items-center gap-1 mt-3 text-sm text-foreground font-medium">
           Read More <ChevronDown className="h-4 w-4" />
         </button>
@@ -411,7 +453,7 @@ const OverviewTab = () => (
       <div className="border border-border rounded-xl p-5 bg-card">
         <h3 className="text-base font-semibold text-foreground mb-3">Expertise</h3>
         <div className="flex flex-wrap gap-2">
-          {mentorData.expertise.map((tag) => (
+          {mentor.expertise.map((tag) => (
             <span key={tag} className="px-3 py-1.5 text-xs font-medium border border-border rounded-full text-foreground bg-background">
               ✅ {tag}
             </span>
@@ -450,7 +492,7 @@ const OverviewTab = () => (
 );
 
 // --- Feed Tab ---
-const FeedTab = () => {
+const FeedTab = ({ mentor }: { mentor: NonNullable<MentorInfo> }) => {
   const categories = ["All", "Career advice", "Mentorship", "Community", "Technology", "Tech Tools", "Podca"];
 
   return (
@@ -481,7 +523,7 @@ const FeedTab = () => {
         {feedPosts.map((post, i) => (
           <div key={i} className="border border-border rounded-xl p-5 bg-card">
             <div className="flex items-start gap-3">
-              <img src={mentorData.avatar} alt="" className="h-8 w-8 rounded-full object-cover" />
+              <img src={mentor.avatar} alt="" className="h-8 w-8 rounded-full object-cover" />
               <div className="flex-1">
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className="text-sm font-semibold text-foreground">{post.author} {post.flag}</span>
@@ -533,7 +575,7 @@ const FeedTab = () => {
             </div>
 
             <div className="flex items-center gap-2 mt-3 pt-3 border-t border-border">
-              <img src={mentorData.avatar} alt="" className="h-6 w-6 rounded-full object-cover" />
+              <img src={mentor.avatar} alt="" className="h-6 w-6 rounded-full object-cover" />
               <span className="text-xs text-muted-foreground flex-1">Reply to {post.author}...</span>
               <button className="px-3 py-1 text-xs font-medium bg-foreground text-background rounded-md">Post</button>
             </div>
@@ -550,7 +592,7 @@ const FeedTab = () => {
             <span className="text-xs bg-secondary text-secondary-foreground px-2 py-0.5 rounded">Hello Community ▾</span>
           </div>
           <div className="flex items-start gap-2 mb-3">
-            <img src={mentorData.avatar} alt="" className="h-6 w-6 rounded-full object-cover" />
+            <img src={mentor.avatar} alt="" className="h-6 w-6 rounded-full object-cover" />
             <div className="flex-1 border border-border rounded-lg p-2 min-h-[60px]">
               <span className="text-xs text-muted-foreground">What's on your mind?</span>
             </div>
@@ -617,7 +659,7 @@ const CoursesTab = () => (
 );
 
 // --- Profile Header ---
-const ProfileHeader = () => {
+const ProfileHeader = ({ mentor }: { mentor: NonNullable<MentorInfo> }) => {
   const socialIcons: Record<string, any> = {
     linkedin: Linkedin,
     instagram: Instagram,
@@ -628,56 +670,42 @@ const ProfileHeader = () => {
 
   return (
     <>
-      {/* Cover — subtle gradient using design tokens */}
       <div
         className="relative h-40 md:h-52 bg-secondary"
         style={{ background: "linear-gradient(135deg, hsl(var(--secondary)) 0%, hsl(var(--muted)) 50%, hsl(var(--accent)) 100%)" }}
       />
-
-      {/* Profile info */}
       <div className="max-w-5xl mx-auto px-4 md:px-6 -mt-14 relative z-10 pb-4">
         <div className="flex flex-col md:flex-row md:items-end gap-4">
-          {/* Avatar */}
           <div className="relative shrink-0">
-            <img
-              src={mentorData.avatar}
-              alt={mentorData.name}
-              className="h-28 w-28 rounded-full border-4 border-background object-cover shadow-lg"
-            />
-            {mentorData.available && (
+            <img src={mentor.avatar} alt={mentor.name} className="h-28 w-28 rounded-full border-4 border-background object-cover shadow-lg" />
+            {mentor.available && (
               <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap font-medium flex items-center gap-1 text-[10px] bg-secondary text-secondary-foreground px-2.5 py-1 rounded-full border border-border">
                 <Zap className="h-3 w-3" /> Available ASAP
               </span>
             )}
           </div>
-
-          {/* Info */}
           <div className="flex-1 pt-2">
             <div className="flex items-center gap-2">
-              <h1 className="text-xl font-bold text-foreground">{mentorData.name}</h1>
-              <span>{mentorData.flag}</span>
+              <h1 className="text-xl font-bold text-foreground">{mentor.name}</h1>
+              <span>{mentor.flag}</span>
             </div>
             <p className="text-sm text-muted-foreground mt-0.5">
-              {mentorData.role} <span className="mx-1 opacity-40">·</span> {mentorData.company}
+              {mentor.role} <span className="mx-1 opacity-40">·</span> {mentor.company}
             </p>
-
             <div className="flex flex-wrap items-center gap-4 mt-2 text-xs text-muted-foreground">
-              <span className="flex items-center gap-1"><MapPin className="h-3.5 w-3.5" /> {mentorData.location}</span>
-              <span className="flex items-center gap-1"><Globe className="h-3.5 w-3.5" /> {mentorData.languages}</span>
-              <span className="flex items-center gap-1"><Calendar className="h-3.5 w-3.5" /> {mentorData.experience}</span>
+              <span className="flex items-center gap-1"><MapPin className="h-3.5 w-3.5" /> {mentor.location}</span>
+              <span className="flex items-center gap-1"><Globe className="h-3.5 w-3.5" /> {mentor.languages}</span>
+              <span className="flex items-center gap-1"><Calendar className="h-3.5 w-3.5" /> {mentor.experience}</span>
             </div>
-
             <div className="flex flex-wrap items-center gap-3 mt-1.5 text-xs text-muted-foreground">
-              <span className="flex items-center gap-1"><Star className="h-3.5 w-3.5" /> {mentorData.reviews}</span>
+              <span className="flex items-center gap-1"><Star className="h-3.5 w-3.5" /> {mentor.reviews}</span>
               <span className="opacity-40">·</span>
-              <span className="flex items-center gap-1"><Users className="h-3.5 w-3.5" /> {mentorData.subscribers}</span>
+              <span className="flex items-center gap-1"><Users className="h-3.5 w-3.5" /> {mentor.subscribers}</span>
               <span className="opacity-40">·</span>
-              <span className="flex items-center gap-1"><CheckCircle className="h-3.5 w-3.5" /> {mentorData.sessions}</span>
+              <span className="flex items-center gap-1"><CheckCircle className="h-3.5 w-3.5" /> {mentor.sessions}</span>
             </div>
-
-            {/* Social links */}
             <div className="flex items-center gap-3 mt-3">
-              {mentorData.socialLinks.map((social) => {
+              {mentor.socialLinks.map((social) => {
                 const Icon = socialIcons[social];
                 return Icon ? (
                   <a key={social} href="#" className="text-foreground hover:text-muted-foreground transition-colors">
@@ -690,8 +718,6 @@ const ProfileHeader = () => {
               </a>
             </div>
           </div>
-
-          {/* Actions — stacked vertically to avoid badge overlap */}
           <div className="flex items-center gap-2 md:self-end md:mb-2">
             <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-foreground text-background rounded-lg hover:opacity-90 transition-opacity">
               <MessageSquare className="h-4 w-4" /> Message
@@ -710,14 +736,26 @@ const ProfileHeader = () => {
 const tabs = ["Overview", "Feed", "Podcasts", "Courses", "Files", "Calendar"];
 
 const MentorProfile = () => {
+  const { id } = useParams();
   const [activeTab, setActiveTab] = useState("Overview");
+  const mentor = getMentorFromSlug(id);
+
+  if (!mentor) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navbar />
+        <div className="flex items-center justify-center py-20 text-muted-foreground">
+          Mentor not found. <Link to="/" className="ml-2 underline text-foreground">Go back</Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <ProfileHeader />
+      <ProfileHeader mentor={mentor} />
 
-      {/* Tabs */}
       <div className="max-w-5xl mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between border-b border-border mb-6">
           <div className="flex gap-6">
@@ -740,10 +778,9 @@ const MentorProfile = () => {
           </span>
         </div>
 
-        {/* Tab content */}
         <div className="pb-12">
-          {activeTab === "Overview" && <OverviewTab />}
-          {activeTab === "Feed" && <FeedTab />}
+          {activeTab === "Overview" && <OverviewTab mentor={mentor} />}
+          {activeTab === "Feed" && <FeedTab mentor={mentor} />}
           {activeTab === "Courses" && <CoursesTab />}
           {(activeTab === "Podcasts" || activeTab === "Files" || activeTab === "Calendar") && (
             <div className="text-center py-12 text-muted-foreground text-sm">
