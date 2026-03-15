@@ -58,7 +58,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      <main className="max-w-[1640px] mx-auto px-4 md:px-6 py-6">
+      <main className="w-fit mx-auto px-4 md:px-6 py-6">
         {/* Search */}
         <div className="relative max-w-2xl mx-auto mb-6">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
@@ -77,7 +77,7 @@ const Index = () => {
         </div>
 
         {/* Mentor Grid */}
-        <div className="flex flex-wrap justify-start gap-3">
+        <div className="grid grid-cols-[repeat(6,251.76px)] gap-3 justify-center">
           {filtered.map((mentor, i) => (
             <MentorCard key={`${mentor.name}-${i}`} {...mentor} index={i} />
           ))}
