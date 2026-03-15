@@ -492,7 +492,7 @@ const OverviewTab = ({ mentor }: { mentor: NonNullable<MentorInfo> }) => (
 );
 
 // --- Feed Tab ---
-const FeedTab = () => {
+const FeedTab = ({ mentor }: { mentor: NonNullable<MentorInfo> }) => {
   const categories = ["All", "Career advice", "Mentorship", "Community", "Technology", "Tech Tools", "Podca"];
 
   return (
