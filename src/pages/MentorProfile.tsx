@@ -542,7 +542,7 @@ const ServiceCard = ({ service, defaultOpen = false, zIndex = 0 }: { service: ty
               </span>
             </div>
             <div className="flex items-center gap-1">
-              <Star style={{ width: "20px", height: "20px", color: "rgba(0,0,0,0.8)", fill: "rgba(0,0,0,0.8)" }} />
+              <Star style={{ width: "20px", height: "20px", color: "rgba(0,0,0,0.8)" }} />
               <span
                 style={{
                   fontFamily: "'Geist', sans-serif",
