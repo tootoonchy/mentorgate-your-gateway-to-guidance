@@ -81,6 +81,7 @@ const services = [
   {
     title: "1:1 Video Consultation",
     icon: Video,
+    tagColor: "#D7BDFF",
     description: "Book a 1:1 live video consultation & get personalized advice",
     nextAvailable: "Friday, 31 January\n9:00am (GMT +8)",
     price: "Starting at $80",
@@ -90,6 +91,7 @@ const services = [
   {
     title: "1:1 Mentorship",
     icon: UserCheck,
+    tagColor: "#DCF251",
     included: [
       "1:1 Chat (Unlimited)",
       "1:1 Video Calls (30 min / month)",
@@ -106,6 +108,7 @@ const services = [
   {
     title: "Community Membership",
     icon: Users2,
+    tagColor: "#FFD836",
     included: [
       "Details on how to build & manage a successful restaurant",
       "Advice on how to scale operations, launch a new location, & enter a new market",
@@ -119,6 +122,7 @@ const services = [
   {
     title: "Corporate Mentorship",
     icon: Building2,
+    tagColor: "#C4DEF8",
     included: [
       "B2B and corporate clients booking for workshop or limited time experiences.",
       "Common mistakes when building a restaurant business",
@@ -351,72 +355,233 @@ const ActivityHeatmap = () => {
   );
 };
 
-// --- Collapsible Service Card ---
-const ServiceCard = ({ service, defaultOpen = false }: { service: typeof services[0]; defaultOpen?: boolean }) => {
+// --- Collapsible Service Card (Figma-accurate) ---
+const ServiceCard = ({ service, defaultOpen = false, zIndex = 0 }: { service: typeof services[0]; defaultOpen?: boolean; zIndex?: number }) => {
   const [open, setOpen] = useState(defaultOpen);
   const Icon = service.icon;
 
   return (
-    <div className="border border-border rounded-xl bg-card overflow-hidden">
+    <div
+      className="relative flex flex-col items-start"
+      style={{
+        width: "360px",
+        background: "#FFFFFF",
+        boxShadow: "0px 0px 40px rgba(203, 204, 205, 0.3)",
+        borderRadius: open ? "8px" : "8px",
+        margin: "-8px 0px",
+        zIndex,
+      }}
+    >
+      {/* Colored Tag Badge — top right */}
+      <div
+        className="absolute flex items-center justify-center"
+        style={{
+          width: "40px",
+          height: "40px",
+          right: "24px",
+          top: "0px",
+          background: service.tagColor,
+          borderRadius: "0px 0px 4px 4px",
+        }}
+      >
+        <Icon style={{ width: "24px", height: "24px", color: "rgba(0,0,0,0.9)" }} />
+      </div>
+
+      {/* Title row — clickable */}
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between p-4 hover:bg-muted/50 transition-colors"
+        className="w-full flex items-start"
+        style={{ padding: "16px 24px 16px 24px" }}
       >
-        <div className="flex items-center gap-3">
-          <div className="p-1.5 rounded-lg bg-secondary text-secondary-foreground">
-            <Icon className="h-4 w-4" />
-          </div>
-          <h4 className="text-sm font-semibold text-foreground">{service.title}</h4>
-        </div>
-        <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
+        <span
+          style={{
+            fontFamily: "'Geist', sans-serif",
+            fontWeight: 600,
+            fontSize: "18px",
+            lineHeight: "30px",
+            letterSpacing: "0.01em",
+            color: "rgba(0,0,0,0.9)",
+          }}
+        >
+          {service.title}
+        </span>
       </button>
 
+      {/* Divider */}
+      <div style={{ width: "360px", height: "0px", borderBottom: "1px solid rgba(0,0,0,0.1)" }} />
+
       {open && (
-        <div className="px-4 pb-4 border-t border-border pt-3">
+        <>
+          {/* Features / Description */}
           {service.description && (
-            <p className="text-xs text-muted-foreground mb-3">{service.description}</p>
+            <div style={{ padding: "16px 24px 0" }}>
+              <p
+                style={{
+                  fontFamily: "'Geist', sans-serif",
+                  fontWeight: 400,
+                  fontSize: "16px",
+                  lineHeight: "24px",
+                  letterSpacing: "0.01em",
+                  color: "rgba(0,0,0,0.9)",
+                }}
+              >
+                {service.description}
+              </p>
+            </div>
           )}
 
           {service.nextAvailable && (
-            <div className="mb-3">
-              <p className="text-xs font-medium text-foreground mb-1">Next available</p>
-              <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                <Calendar className="h-3.5 w-3.5" />
-                <span className="whitespace-pre-line">{service.nextAvailable}</span>
+            <div style={{ padding: "16px 24px 0" }}>
+              <p
+                style={{
+                  fontFamily: "'Geist', sans-serif",
+                  fontWeight: 500,
+                  fontSize: "16px",
+                  lineHeight: "24px",
+                  letterSpacing: "0.01em",
+                  color: "rgba(0,0,0,0.9)",
+                  marginBottom: "4px",
+                }}
+              >
+                Next available
+              </p>
+              <div className="flex items-center gap-1">
+                <Calendar style={{ width: "20px", height: "20px", color: "rgba(0,0,0,0.5)" }} />
+                <span
+                  style={{
+                    fontFamily: "'Geist', sans-serif",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    letterSpacing: "0.01em",
+                    color: "rgba(0,0,0,0.9)",
+                    whiteSpace: "pre-line",
+                  }}
+                >
+                  {service.nextAvailable}
+                </span>
               </div>
             </div>
           )}
 
           {service.included && (
-            <div className="mb-3">
-              <p className="text-xs font-medium text-foreground mb-1">What's included:</p>
-              <ul className="space-y-1">
+            <div style={{ padding: "16px 24px 20px" }}>
+              <p
+                style={{
+                  fontFamily: "'Geist', sans-serif",
+                  fontWeight: 500,
+                  fontSize: "16px",
+                  lineHeight: "24px",
+                  letterSpacing: "0.01em",
+                  color: "rgba(0,0,0,0.9)",
+                  marginBottom: "8px",
+                }}
+              >
+                What's included:
+              </p>
+              <div className="space-y-1">
                 {service.included.map((item, j) => (
-                  <li key={j} className="text-xs text-muted-foreground flex gap-1">
-                    <span>✦</span>
-                    <span>{item}</span>
-                  </li>
+                  <p
+                    key={j}
+                    style={{
+                      fontFamily: "'Geist', sans-serif",
+                      fontWeight: 400,
+                      fontSize: "16px",
+                      lineHeight: "24px",
+                      letterSpacing: "0.01em",
+                      color: "rgba(0,0,0,0.9)",
+                    }}
+                  >
+                    ✦ {item}
+                  </p>
                 ))}
-              </ul>
+              </div>
             </div>
           )}
 
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-sm font-semibold text-foreground">{service.price}</span>
-            <div className="flex items-center gap-1 text-xs text-muted-foreground">
-              <Star className="h-3 w-3" />
-              <span>{service.rating}</span>
+          {/* Divider before price */}
+          <div style={{ width: "360px", height: "0px", borderBottom: "1px solid rgba(0,0,0,0.1)" }} />
+
+          {/* Price row */}
+          <div
+            className="flex items-center justify-between"
+            style={{ padding: "20px 24px", width: "360px", boxSizing: "border-box" }}
+          >
+            <div className="flex flex-col gap-1 flex-1">
+              {service.remaining && (
+                <span
+                  style={{
+                    fontFamily: "'Kumbh Sans', sans-serif",
+                    fontWeight: 700,
+                    fontSize: "12px",
+                    lineHeight: "18px",
+                    letterSpacing: "0.01em",
+                    color: "rgba(0,0,0,0.9)",
+                    background: "#FFE895",
+                    padding: "4px 10px",
+                    borderRadius: "4px",
+                    display: "inline-block",
+                    width: "fit-content",
+                    marginBottom: "4px",
+                  }}
+                >
+                  {service.remaining}
+                </span>
+              )}
+              <span
+                style={{
+                  fontFamily: "'Geist', sans-serif",
+                  fontWeight: 600,
+                  fontSize: "16px",
+                  lineHeight: "24px",
+                  letterSpacing: "0.01em",
+                  color: "rgba(0,0,0,0.9)",
+                }}
+              >
+                {service.price}
+              </span>
+            </div>
+            <div className="flex items-center gap-1">
+              <Star style={{ width: "20px", height: "20px", color: "rgba(0,0,0,0.8)", fill: "rgba(0,0,0,0.8)" }} />
+              <span
+                style={{
+                  fontFamily: "'Geist', sans-serif",
+                  fontWeight: 400,
+                  fontSize: "16px",
+                  lineHeight: "24px",
+                  letterSpacing: "0.01em",
+                  color: "rgba(0,0,0,0.9)",
+                }}
+              >
+                {service.rating}
+              </span>
             </div>
           </div>
 
-          {service.remaining && (
-            <p className="text-xs text-muted-foreground mb-2">{service.remaining}</p>
-          )}
-
-          <button className="w-full py-2.5 text-sm font-medium rounded-lg bg-foreground text-background hover:opacity-90 transition-opacity">
-            {service.cta}
+          {/* CTA Button */}
+          <button
+            className="flex items-center justify-center w-full hover:opacity-90 transition-opacity"
+            style={{
+              padding: "14px 16px",
+              height: "60px",
+              background: "#1A1A1A",
+              borderRadius: "0 0 8px 8px",
+            }}
+          >
+            <span
+              style={{
+                fontFamily: "'Geist', sans-serif",
+                fontWeight: 600,
+                fontSize: "16px",
+                lineHeight: "16px",
+                letterSpacing: "0.01em",
+                color: "#FFFFFF",
+              }}
+            >
+              {service.cta}
+            </span>
           </button>
-        </div>
+        </>
       )}
     </div>
   );
@@ -424,9 +589,22 @@ const ServiceCard = ({ service, defaultOpen = false }: { service: typeof service
 
 // --- Services Sidebar ---
 const ServicesSidebar = () => (
-  <div className="space-y-3">
+  <div className="flex flex-col" style={{ width: "360px", gap: "0px", paddingTop: "8px" }}>
+    <h3
+      style={{
+        fontFamily: "'Geist', sans-serif",
+        fontWeight: 600,
+        fontSize: "18px",
+        lineHeight: "30px",
+        letterSpacing: "0.01em",
+        color: "rgba(0,0,0,0.9)",
+        marginBottom: "12px",
+      }}
+    >
+      Services
+    </h3>
     {services.map((service, i) => (
-      <ServiceCard key={i} service={service} />
+      <ServiceCard key={i} service={service} zIndex={i} />
     ))}
   </div>
 );
@@ -434,7 +612,7 @@ const ServicesSidebar = () => (
 type MentorInfo = ReturnType<typeof getMentorFromSlug> & {};
 
 const OverviewTab = ({ mentor }: { mentor: NonNullable<MentorInfo> }) => (
-  <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6">
+  <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-6">
     <div className="space-y-6">
       {/* Activity */}
       <div className="border border-border rounded-xl p-5 bg-card overflow-hidden">
@@ -498,7 +676,7 @@ const FeedTab = ({ mentor }: { mentor: NonNullable<MentorInfo> }) => {
   const categories = ["All", "Career advice", "Mentorship", "Community", "Technology", "Tech Tools", "Podca"];
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-6">
       <div className="space-y-4">
         <div className="border border-border rounded-xl p-5 bg-card">
           <div className="flex items-center justify-between mb-4">
