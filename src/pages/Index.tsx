@@ -74,7 +74,7 @@ const Index = () => {
         </div>
 
         {/* Mentor Grid */}
-        <div className="flex flex-wrap justify-center gap-4">
+        <div className="flex flex-wrap justify-start gap-4">
           {filtered.map((mentor, i) => (
             <MentorCard key={`${mentor.name}-${i}`} {...mentor} />
           ))}
