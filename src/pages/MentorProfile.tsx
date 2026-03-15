@@ -634,6 +634,10 @@ const ProfileHeader = () => {
         </div>
       </div>
     </>
+  );
+};
+
+// --- Main Page ---
 const tabs = ["Overview", "Feed", "Podcasts", "Courses", "Files", "Calendar"];
 
 const MentorProfile = () => {
