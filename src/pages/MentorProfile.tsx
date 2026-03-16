@@ -397,8 +397,8 @@ const ServiceCard = ({ service, defaultOpen = false, zIndex = 0 }: { service: ty
           style={{
             fontFamily: "'Geist', sans-serif",
             fontWeight: 600,
-            fontSize: "18px",
-            lineHeight: "30px",
+            fontSize: "14px",
+            lineHeight: "18px",
             letterSpacing: "0.01em",
             color: "rgba(0,0,0,0.9)",
           }}
@@ -419,8 +419,8 @@ const ServiceCard = ({ service, defaultOpen = false, zIndex = 0 }: { service: ty
                 style={{
                   fontFamily: "'Geist', sans-serif",
                   fontWeight: 400,
-                  fontSize: "16px",
-                  lineHeight: "24px",
+                  fontSize: "12px",
+                  lineHeight: "17px",
                   letterSpacing: "0.01em",
                   color: "rgba(0,0,0,0.9)",
                 }}
@@ -436,8 +436,8 @@ const ServiceCard = ({ service, defaultOpen = false, zIndex = 0 }: { service: ty
                 style={{
                   fontFamily: "'Geist', sans-serif",
                   fontWeight: 500,
-                  fontSize: "16px",
-                  lineHeight: "24px",
+                  fontSize: "12px",
+                  lineHeight: "17px",
                   letterSpacing: "0.01em",
                   color: "rgba(0,0,0,0.9)",
                   marginBottom: "4px",
@@ -451,8 +451,8 @@ const ServiceCard = ({ service, defaultOpen = false, zIndex = 0 }: { service: ty
                   style={{
                     fontFamily: "'Geist', sans-serif",
                     fontWeight: 400,
-                    fontSize: "16px",
-                    lineHeight: "24px",
+                    fontSize: "12px",
+                    lineHeight: "17px",
                     letterSpacing: "0.01em",
                     color: "rgba(0,0,0,0.9)",
                     whiteSpace: "pre-line",
@@ -470,8 +470,8 @@ const ServiceCard = ({ service, defaultOpen = false, zIndex = 0 }: { service: ty
                 style={{
                   fontFamily: "'Geist', sans-serif",
                   fontWeight: 500,
-                  fontSize: "16px",
-                  lineHeight: "24px",
+                  fontSize: "12px",
+                  lineHeight: "17px",
                   letterSpacing: "0.01em",
                   color: "rgba(0,0,0,0.9)",
                   marginBottom: "8px",
@@ -486,8 +486,8 @@ const ServiceCard = ({ service, defaultOpen = false, zIndex = 0 }: { service: ty
                     style={{
                       fontFamily: "'Geist', sans-serif",
                       fontWeight: 400,
-                      fontSize: "16px",
-                      lineHeight: "24px",
+                      fontSize: "12px",
+                      lineHeight: "17px",
                       letterSpacing: "0.01em",
                       color: "rgba(0,0,0,0.9)",
                     }}
@@ -532,8 +532,8 @@ const ServiceCard = ({ service, defaultOpen = false, zIndex = 0 }: { service: ty
                 style={{
                   fontFamily: "'Geist', sans-serif",
                   fontWeight: 600,
-                  fontSize: "16px",
-                  lineHeight: "24px",
+                  fontSize: "12px",
+                  lineHeight: "17px",
                   letterSpacing: "0.01em",
                   color: "rgba(0,0,0,0.9)",
                 }}
@@ -547,8 +547,8 @@ const ServiceCard = ({ service, defaultOpen = false, zIndex = 0 }: { service: ty
                 style={{
                   fontFamily: "'Geist', sans-serif",
                   fontWeight: 400,
-                  fontSize: "16px",
-                  lineHeight: "24px",
+                  fontSize: "12px",
+                  lineHeight: "17px",
                   letterSpacing: "0.01em",
                   color: "rgba(0,0,0,0.9)",
                 }}
@@ -572,8 +572,8 @@ const ServiceCard = ({ service, defaultOpen = false, zIndex = 0 }: { service: ty
               style={{
                 fontFamily: "'Geist', sans-serif",
                 fontWeight: 600,
-                fontSize: "16px",
-                lineHeight: "16px",
+                fontSize: "14px",
+                lineHeight: "11px",
                 letterSpacing: "0.01em",
                 color: "#FFFFFF",
               }}
@@ -594,8 +594,8 @@ const ServicesSidebar = () => (
       style={{
         fontFamily: "'Geist', sans-serif",
         fontWeight: 600,
-        fontSize: "18px",
-        lineHeight: "30px",
+        fontSize: "14px",
+        lineHeight: "18px",
         letterSpacing: "0.01em",
         color: "rgba(0,0,0,0.9)",
         marginBottom: "12px",
