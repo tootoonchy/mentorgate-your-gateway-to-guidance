@@ -594,8 +594,8 @@ const ServicesSidebar = () => (
       style={{
         fontFamily: "'Geist', sans-serif",
         fontWeight: 600,
-        fontSize: "18px",
-        lineHeight: "30px",
+        fontSize: "14px",
+        lineHeight: "18px",
         letterSpacing: "0.01em",
         color: "rgba(0,0,0,0.9)",
         marginBottom: "12px",
