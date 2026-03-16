@@ -849,21 +849,44 @@ const ProfileHeader = ({ mentor }: { mentor: NonNullable<MentorInfo> }) => {
   };
 
   return (
-    <>
+    <div
+      className="relative w-full bg-card"
+      style={{
+        maxWidth: "1680px",
+        height: "475px",
+        margin: "0 auto",
+      }}
+    >
+      {/* Banner gradient area */}
       <div
-        className="relative h-40 md:h-52 bg-secondary"
-        style={{ background: "linear-gradient(135deg, hsl(var(--secondary)) 0%, hsl(var(--muted)) 50%, hsl(var(--accent)) 100%)" }}
+        className="absolute left-0 right-0 top-0 bg-secondary"
+        style={{
+          height: "200px",
+          background: "linear-gradient(135deg, hsl(var(--secondary)) 0%, hsl(var(--muted)) 50%, hsl(var(--accent)) 100%)",
+        }}
       />
-      <div className="max-w-5xl mx-auto px-4 md:px-6 -mt-14 relative z-10 pb-4">
+
+      {/* Content positioned within the 475px header */}
+      <div
+        className="relative z-10 max-w-5xl mx-auto px-4 md:px-6"
+        style={{ paddingTop: "140px" }}
+      >
         <div className="flex flex-col md:flex-row md:items-end gap-4">
+          {/* Avatar */}
           <div className="relative shrink-0">
-            <img src={mentor.avatar} alt={mentor.name} className="h-28 w-28 rounded-full border-4 border-background object-cover shadow-lg" />
+            <img
+              src={mentor.avatar}
+              alt={mentor.name}
+              className="h-28 w-28 rounded-full border-4 border-background object-cover shadow-lg"
+            />
             {mentor.available && (
               <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap font-medium flex items-center gap-1 text-[10px] bg-secondary text-secondary-foreground px-2.5 py-1 rounded-full border border-border">
                 <Zap className="h-3 w-3" /> Available ASAP
               </span>
             )}
           </div>
+
+          {/* Info */}
           <div className="flex-1 pt-2">
             <div className="flex items-center gap-2">
               <h1 className="text-xl font-bold text-foreground">{mentor.name}</h1>
@@ -898,6 +921,8 @@ const ProfileHeader = ({ mentor }: { mentor: NonNullable<MentorInfo> }) => {
               </a>
             </div>
           </div>
+
+          {/* Action buttons */}
           <div className="flex items-center gap-2 md:self-end md:mb-2">
             <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-foreground text-background rounded-lg hover:opacity-90 transition-opacity">
               <MessageSquare className="h-4 w-4" /> Message
@@ -908,7 +933,7 @@ const ProfileHeader = ({ mentor }: { mentor: NonNullable<MentorInfo> }) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
