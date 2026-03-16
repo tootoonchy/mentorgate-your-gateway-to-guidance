@@ -397,8 +397,8 @@ const ServiceCard = ({ service, defaultOpen = false, zIndex = 0 }: { service: ty
           style={{
             fontFamily: "'Geist', sans-serif",
             fontWeight: 600,
-            fontSize: "14px",
-            lineHeight: "18px",
+            fontSize: "18px",
+            lineHeight: "30px",
             letterSpacing: "0.01em",
             color: "rgba(0,0,0,0.9)",
           }}
@@ -419,8 +419,8 @@ const ServiceCard = ({ service, defaultOpen = false, zIndex = 0 }: { service: ty
                 style={{
                   fontFamily: "'Geist', sans-serif",
                   fontWeight: 400,
-                  fontSize: "12px",
-                  lineHeight: "17px",
+                  fontSize: "16px",
+                  lineHeight: "24px",
                   letterSpacing: "0.01em",
                   color: "rgba(0,0,0,0.9)",
                 }}
@@ -436,8 +436,8 @@ const ServiceCard = ({ service, defaultOpen = false, zIndex = 0 }: { service: ty
                 style={{
                   fontFamily: "'Geist', sans-serif",
                   fontWeight: 500,
-                  fontSize: "12px",
-                  lineHeight: "17px",
+                  fontSize: "16px",
+                  lineHeight: "24px",
                   letterSpacing: "0.01em",
                   color: "rgba(0,0,0,0.9)",
                   marginBottom: "4px",
@@ -451,8 +451,8 @@ const ServiceCard = ({ service, defaultOpen = false, zIndex = 0 }: { service: ty
                   style={{
                     fontFamily: "'Geist', sans-serif",
                     fontWeight: 400,
-                    fontSize: "12px",
-                    lineHeight: "17px",
+                    fontSize: "16px",
+                    lineHeight: "24px",
                     letterSpacing: "0.01em",
                     color: "rgba(0,0,0,0.9)",
                     whiteSpace: "pre-line",
@@ -470,8 +470,8 @@ const ServiceCard = ({ service, defaultOpen = false, zIndex = 0 }: { service: ty
                 style={{
                   fontFamily: "'Geist', sans-serif",
                   fontWeight: 500,
-                  fontSize: "12px",
-                  lineHeight: "17px",
+                  fontSize: "16px",
+                  lineHeight: "24px",
                   letterSpacing: "0.01em",
                   color: "rgba(0,0,0,0.9)",
                   marginBottom: "8px",
@@ -486,8 +486,8 @@ const ServiceCard = ({ service, defaultOpen = false, zIndex = 0 }: { service: ty
                     style={{
                       fontFamily: "'Geist', sans-serif",
                       fontWeight: 400,
-                      fontSize: "12px",
-                      lineHeight: "17px",
+                      fontSize: "16px",
+                      lineHeight: "24px",
                       letterSpacing: "0.01em",
                       color: "rgba(0,0,0,0.9)",
                     }}
@@ -532,8 +532,8 @@ const ServiceCard = ({ service, defaultOpen = false, zIndex = 0 }: { service: ty
                 style={{
                   fontFamily: "'Geist', sans-serif",
                   fontWeight: 600,
-                  fontSize: "12px",
-                  lineHeight: "17px",
+                  fontSize: "16px",
+                  lineHeight: "24px",
                   letterSpacing: "0.01em",
                   color: "rgba(0,0,0,0.9)",
                 }}
@@ -547,8 +547,8 @@ const ServiceCard = ({ service, defaultOpen = false, zIndex = 0 }: { service: ty
                 style={{
                   fontFamily: "'Geist', sans-serif",
                   fontWeight: 400,
-                  fontSize: "12px",
-                  lineHeight: "17px",
+                  fontSize: "16px",
+                  lineHeight: "24px",
                   letterSpacing: "0.01em",
                   color: "rgba(0,0,0,0.9)",
                 }}
@@ -572,8 +572,8 @@ const ServiceCard = ({ service, defaultOpen = false, zIndex = 0 }: { service: ty
               style={{
                 fontFamily: "'Geist', sans-serif",
                 fontWeight: 600,
-                fontSize: "14px",
-                lineHeight: "11px",
+                fontSize: "16px",
+                lineHeight: "16px",
                 letterSpacing: "0.01em",
                 color: "#FFFFFF",
               }}
@@ -587,25 +587,236 @@ const ServiceCard = ({ service, defaultOpen = false, zIndex = 0 }: { service: ty
   );
 };
 
-// --- Services Sidebar ---
-const ServicesSidebar = () => (
-  <div className="flex flex-col" style={{ width: "360px", gap: "0px", paddingTop: "8px" }}>
+// --- Intro Video Section ---
+const IntroVideo = () => (
+  <div className="flex flex-col gap-3" style={{ width: "360px" }}>
     <h3
       style={{
         fontFamily: "'Geist', sans-serif",
         fontWeight: 600,
-        fontSize: "14px",
-        lineHeight: "18px",
+        fontSize: "18px",
+        lineHeight: "30px",
         letterSpacing: "0.01em",
         color: "rgba(0,0,0,0.9)",
-        marginBottom: "12px",
       }}
     >
-      Services
+      Intro Video
     </h3>
-    {services.map((service, i) => (
-      <ServiceCard key={i} service={service} zIndex={i} defaultOpen={i === services.length - 1} />
-    ))}
+    <div
+      className="relative flex flex-col justify-end overflow-hidden"
+      style={{
+        width: "360px",
+        height: "240px",
+        borderRadius: "8px",
+        background: "linear-gradient(0deg, rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=250&fit=crop)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        padding: "16px",
+      }}
+    >
+      <div className="flex items-end justify-between" style={{ gap: "10px" }}>
+        <div className="flex flex-col gap-2.5">
+          <Play style={{ width: "33px", height: "33px", color: "#FFFFFF", fill: "#FFFFFF" }} />
+          <span
+            style={{
+              fontFamily: "'Geist', sans-serif",
+              fontWeight: 600,
+              fontSize: "14px",
+              lineHeight: "18px",
+              letterSpacing: "0.01em",
+              color: "#FFFFFF",
+            }}
+          >
+            Mentor Growth Mentor
+          </span>
+        </div>
+        <span
+          style={{
+            fontFamily: "'Geist', sans-serif",
+            fontWeight: 400,
+            fontSize: "14px",
+            lineHeight: "18px",
+            letterSpacing: "0.01em",
+            color: "#FFFFFF",
+            background: "#000000",
+            borderRadius: "50px",
+            padding: "4px 12px",
+          }}
+        >
+          2:25
+        </span>
+      </div>
+    </div>
+  </div>
+);
+
+// --- Similar Mentor Profiles Section ---
+const SimilarMentorProfiles = () => {
+  const similar = allMentors.slice(0, 1);
+  const mentor = similar[0];
+  const idx = allMentors.indexOf(mentor);
+
+  return (
+    <div className="flex flex-col gap-3" style={{ width: "360px" }}>
+      <h3
+        style={{
+          fontFamily: "'Geist', sans-serif",
+          fontWeight: 600,
+          fontSize: "18px",
+          lineHeight: "30px",
+          letterSpacing: "0.01em",
+          color: "rgba(0,0,0,0.9)",
+        }}
+      >
+        Similar Mentor Profiles
+      </h3>
+      <div
+        className="flex flex-col overflow-hidden"
+        style={{
+          width: "360px",
+          background: "#FFFFFF",
+          boxShadow: "0px 0px 40px rgba(203, 204, 205, 0.3)",
+          borderRadius: "8px",
+        }}
+      >
+        {/* Cover / Avatar area */}
+        <div className="relative" style={{ height: "120px", background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)", borderRadius: "4px 4px 0 0" }} />
+        <div className="relative flex items-center" style={{ padding: "0 24px", height: "130px", marginTop: "-40px" }}>
+          <div className="relative">
+            <img
+              src={avatarImages[idx % avatarImages.length]}
+              alt={mentor.name}
+              className="object-cover"
+              style={{ width: "122px", height: "122px", border: "4px solid #FFFFFF", borderRadius: "61px" }}
+            />
+            <div
+              className="absolute flex items-center gap-1"
+              style={{
+                left: "50%",
+                transform: "translateX(-50%)",
+                bottom: "0px",
+                background: "#D5F2DA",
+                borderRadius: "61px",
+                padding: "5px 10px 4px",
+                whiteSpace: "nowrap",
+              }}
+            >
+              <Zap style={{ width: "12px", height: "12px", color: "#3B6643" }} />
+              <span style={{ fontFamily: "'Geist', sans-serif", fontWeight: 500, fontSize: "10px", lineHeight: "10px", color: "#3B6643" }}>
+                Available ASAP
+              </span>
+            </div>
+          </div>
+          {/* Badges */}
+          <div className="absolute flex gap-2" style={{ right: "20px", top: "120px" }}>
+            <div className="flex items-center justify-center" style={{ width: "30px", height: "30px", background: "#000000" }}>
+              <span style={{ fontFamily: "'Geist', sans-serif", fontWeight: 700, fontSize: "7.5px", lineHeight: "9px", color: "#FFFFFF", letterSpacing: "0.01em" }}>TOP</span>
+            </div>
+            <div className="flex items-center justify-center" style={{ width: "30px", height: "30px", background: "#FFD836" }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" strokeWidth="2"><circle cx="12" cy="7" r="4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/></svg>
+            </div>
+            <div className="flex items-center justify-center" style={{ width: "30px", height: "30px", background: "#D2DEF7" }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" strokeWidth="2"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24A2.5 2.5 0 0 1 9.5 2"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24A2.5 2.5 0 0 0 14.5 2"/></svg>
+            </div>
+          </div>
+        </div>
+        {/* Info */}
+        <div style={{ padding: "16px 24px 16px" }}>
+          <div className="flex flex-col gap-1" style={{ paddingRight: "32px" }}>
+            <span style={{ fontFamily: "'Geist', sans-serif", fontWeight: 700, fontSize: "18px", lineHeight: "23px", letterSpacing: "0.01em", color: "rgba(0,0,0,0.9)" }}>
+              {mentor.name}
+            </span>
+            <div className="flex items-center gap-2">
+              <span style={{ fontFamily: "'Geist', sans-serif", fontWeight: 500, fontSize: "14px", lineHeight: "24px", letterSpacing: "0.01em", color: "rgba(0,0,0,0.9)" }}>
+                {mentor.role}
+              </span>
+              <span style={{ width: "2px", height: "2px", background: "rgba(0,0,0,0.9)", borderRadius: "50%", opacity: 0.6 }} />
+              <span style={{ fontFamily: "'Geist', sans-serif", fontWeight: 500, fontSize: "14px", lineHeight: "24px", letterSpacing: "0.01em", color: "rgba(0,0,0,0.9)" }}>
+                {mentor.company}
+              </span>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-2.5 mt-3">
+            <div className="flex items-center gap-1.5">
+              <MapPin style={{ width: "20px", height: "20px", color: "rgba(0,0,0,0.8)" }} />
+              <span style={{ fontFamily: "'Geist', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "24px", letterSpacing: "0.01em", color: "rgba(0,0,0,0.8)" }}>
+                {mentor.location}
+              </span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <Globe style={{ width: "20px", height: "20px", color: "rgba(0,0,0,0.8)" }} />
+              <span style={{ fontFamily: "'Geist', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "24px", letterSpacing: "0.01em", color: "rgba(0,0,0,0.8)" }}>
+                {mentor.languages}
+              </span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <Clock style={{ width: "20px", height: "20px", color: "rgba(0,0,0,0.8)" }} />
+              <span style={{ fontFamily: "'Geist', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "24px", letterSpacing: "0.01em", color: "rgba(0,0,0,0.8)" }}>
+                {mentor.experience}
+              </span>
+            </div>
+          </div>
+        </div>
+        {/* Divider */}
+        <div style={{ width: "360px", height: "0px", borderBottom: "1px solid rgba(0,0,0,0.1)" }} />
+        {/* View Profile Button */}
+        <Link
+          to={`/mentor/${mentor.name.toLowerCase().replace(/[^a-z0-9]/g, "").replace(/\s+/g, "-")}`}
+          className="flex items-center justify-center hover:opacity-90 transition-opacity"
+          style={{
+            padding: "14px 16px",
+            height: "60px",
+            background: "#1A1A1A",
+            fontFamily: "'Geist', sans-serif",
+            fontWeight: 600,
+            fontSize: "16px",
+            lineHeight: "16px",
+            letterSpacing: "0.01em",
+            color: "#FFFFFF",
+          }}
+        >
+          View Profile
+        </Link>
+      </div>
+      {/* Pagination dots */}
+      <div className="flex items-center justify-between" style={{ width: "360px", height: "24px" }}>
+        <div className="flex items-center gap-2">
+          {[0, 1, 2, 3, 4].map((i) => (
+            <div
+              key={i}
+              style={{
+                width: "10px",
+                height: "10px",
+                borderRadius: "50%",
+                background: i === 0 ? "#000000" : "rgba(0,0,0,0.25)",
+              }}
+            />
+          ))}
+        </div>
+        <div className="flex items-center gap-2.5">
+          <ChevronLeft style={{ width: "24px", height: "24px", color: "rgba(0,0,0,0.9)" }} />
+          <ChevronRight style={{ width: "24px", height: "24px", color: "rgba(0,0,0,0.9)" }} />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// --- Services Sidebar ---
+const ServicesSidebar = () => (
+  <div className="flex flex-col" style={{ width: "360px", gap: "32px" }}>
+    {/* Services cards */}
+    <div className="flex flex-col" style={{ width: "360px", gap: "0px" }}>
+      {services.map((service, i) => (
+        <ServiceCard key={i} service={service} zIndex={i} defaultOpen={i === services.length - 1} />
+      ))}
+    </div>
+
+    {/* Intro Video */}
+    <IntroVideo />
+
+    {/* Similar Mentor Profiles */}
+    <SimilarMentorProfiles />
   </div>
 );
 
