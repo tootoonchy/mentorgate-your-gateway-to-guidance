@@ -572,8 +572,8 @@ const ServiceCard = ({ service, defaultOpen = false, zIndex = 0 }: { service: ty
               style={{
                 fontFamily: "'Geist', sans-serif",
                 fontWeight: 600,
-                fontSize: "16px",
-                lineHeight: "16px",
+                fontSize: "14px",
+                lineHeight: "11px",
                 letterSpacing: "0.01em",
                 color: "#FFFFFF",
               }}
