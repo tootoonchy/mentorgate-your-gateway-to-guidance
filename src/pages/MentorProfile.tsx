@@ -368,7 +368,7 @@ const ServiceCard = ({ service, defaultOpen = false, zIndex = 0 }: { service: ty
         background: "#FFFFFF",
         boxShadow: "0px 0px 40px rgba(203, 204, 205, 0.3)",
         borderRadius: open ? "8px" : "8px",
-        margin: "-8px 0px",
+        marginBottom: "8px",
         zIndex,
       }}
     >
@@ -565,7 +565,7 @@ const ServiceCard = ({ service, defaultOpen = false, zIndex = 0 }: { service: ty
               padding: "14px 16px",
               height: "60px",
               background: "#1A1A1A",
-              borderRadius: "0 0 8px 8px",
+              borderRadius: "0",
             }}
           >
             <span
