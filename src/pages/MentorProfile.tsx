@@ -8,6 +8,7 @@ import {
   Search, SlidersHorizontal, Lock, Clock, Zap
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import RichTextEditor from "@/components/RichTextEditor";
 
 // --- All mentors (same data as Index page) ---
 const allMentors = [
