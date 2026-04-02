@@ -976,27 +976,18 @@ const FeedTab = ({ mentor }: { mentor: NonNullable<MentorInfo> }) => {
 
       {/* Right sidebar */}
       <div className="hidden lg:block space-y-4">
-        {/* Create post */}
-        <div className="border border-border rounded-xl p-4 bg-card">
+        {/* Create post with rich text editor */}
+        <div>
           <h4 className="text-sm font-semibold text-foreground mb-3">Create post</h4>
           <div className="mb-2">
             <span className="text-xs bg-secondary text-secondary-foreground px-2 py-0.5 rounded">Hello Community ▾</span>
           </div>
-          <div className="flex items-start gap-2 mb-3">
-            <img src={mentor.avatar} alt="" className="h-6 w-6 rounded-full object-cover" />
-            <div className="flex-1 border border-border rounded-lg p-2 min-h-[60px]">
-              <span className="text-xs text-muted-foreground">What's on your mind?</span>
-            </div>
-          </div>
-          <div className="flex items-center justify-between text-xs text-muted-foreground">
-            <span>0/4000</span>
-          </div>
-          <div className="flex items-center gap-4 mt-2">
-            <span className="text-xs text-muted-foreground flex items-center gap-1">📷 Media</span>
-            <span className="text-xs text-muted-foreground flex items-center gap-1">📎 Attach</span>
-            <span className="text-xs text-muted-foreground flex items-center gap-1">📊 Poll</span>
-            <button className="ml-auto px-3 py-1 text-xs font-medium bg-foreground text-background rounded-md">Post</button>
-          </div>
+          <RichTextEditor
+            avatar={mentor.avatar}
+            placeholder="What's on your mind?"
+            maxLength={4000}
+            onPost={(html) => console.log("Posted:", html)}
+          />
         </div>
 
         {/* Services list */}
