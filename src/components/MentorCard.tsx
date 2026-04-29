@@ -47,8 +47,8 @@ const MentorCard = ({
       className="flex flex-col items-start isolate bg-card overflow-hidden"
       style={{
         width: "251.76px",
-        boxShadow: "0px 0px 28px rgba(203, 204, 205, 0.3)",
-        borderRadius: "5.6px",
+        boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.06)",
+        borderRadius: "8px",
       }}
     >
       {/* Cover area with background image + avatar */}

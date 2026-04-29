@@ -55,38 +55,42 @@ const Index = () => {
   );
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen" style={{ background: "#F5F5F5" }}>
       <Navbar />
 
-      <main className="w-fit mx-auto px-4 md:px-6 py-6">
-        {/* Search */}
-        <div className="relative max-w-2xl mx-auto mb-6">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-          <input
-            type="text"
-            placeholder="Search mentor by name or skill..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-12 pr-4 py-3 rounded-full border border-border bg-card text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring"
-          />
-        </div>
+      {/* White content panel */}
+      <main className="bg-background mx-auto" style={{ padding: "32px 0 0" }}>
+        <div className="w-fit mx-auto px-6">
+          {/* Search */}
+          <div className="relative mb-6" style={{ width: "1535px", maxWidth: "100%" }}>
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" strokeWidth={1.75} />
+            <input
+              type="text"
+              placeholder="Search mentor by name or skill..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-12 pr-4 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+              style={{ height: "48px" }}
+            />
+          </div>
 
-        {/* Categories */}
-        <div className="mb-6">
-          <CategoryFilter />
-        </div>
+          {/* Categories */}
+          <div className="mb-6" style={{ width: "1535px", maxWidth: "100%" }}>
+            <CategoryFilter />
+          </div>
 
-        {/* Mentor Grid */}
-        <div className="grid grid-cols-[repeat(6,251.76px)] gap-3 justify-center">
-          {filtered.map((mentor, i) => (
-            <MentorCard key={`${mentor.name}-${i}`} {...mentor} index={i} />
-          ))}
-        </div>
+          {/* Mentor Grid */}
+          <div className="grid grid-cols-[repeat(6,251.76px)] gap-3">
+            {filtered.map((mentor, i) => (
+              <MentorCard key={`${mentor.name}-${i}`} {...mentor} index={i} />
+            ))}
+          </div>
 
-        {/* Loading indicator */}
-        <div className="flex items-center justify-center gap-2 py-8 text-muted-foreground text-sm">
-          <Loader2 className="h-4 w-4 animate-spin" />
-          Please wait loading your mentors
+          {/* Loading indicator */}
+          <div className="flex items-center justify-center gap-2 py-8 text-muted-foreground text-sm">
+            <Loader2 className="h-4 w-4 animate-spin" />
+            Please wait loading your mentors
+          </div>
         </div>
       </main>
     </div>
